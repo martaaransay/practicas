@@ -1,0 +1,3090 @@
+
+**************************************************************************
+ ___       _                               _____ _           _
+|_ _|_ __ | |_ ___  __ _ _ __ ___  _ __   |  ___(_)_ __   __| | ___ _ __
+ | || '_ \| __/ _ \/ _` | '__/ _ \| '_ \  | |_  | | '_ \ / _` |/ _ \ '__|
+ | || | | | ||  __/ (_| | | | (_) | | | | |  _| | | | | | (_| |  __/ |
+|___|_| |_|\__\___|\__, |_|  \___/|_| |_| |_|   |_|_| |_|\__,_|\___|_|
+                   |___/
+
+**************************************************************************
+
+integron_finder version 2.0.6 
+Using:
+ - Python 3.10.21 | packaged by conda-forge | (main, Aug 21 2026, 22:42:31) [GCC 14.4.0]
+ - numpy 2.2.6
+ - pandas 2.3.3
+ - matplolib 3.10.9
+ - biopython 1.88
+
+ - Prodigal V2.6.3: February, 2016
+ - INFERNAL 1.1.4 (Dec 2020)
+ - HMMER 3.3.2 (Nov 2020); http://hmmer.org/
+
+Authors:
+ - Jean Cury, Bertrand Neron, Eduardo Rocha,
+
+Citation:
+
+ Néron, B.; Littner, E.; Haudiquet, M.; Perrin, A.; Cury, J.; Rocha, E.P.C.
+ IntegronFinder 2.0: Identification and Analysis of Integrons across Bacteria, with a Focus on Antibiotic Resistance in Klebsiella.
+ Microorganisms 2022, 10, 700. https://doi.org/10.3390/microorganisms10040700
+
+ If you use --func-annot in conjunction with file NCBIfam-AMRFinder.hmm please also cite
+
+ Haft, DH et al., Nucleic Acids Res. 2018 Jan 4;46(D1):D851-D860
+ PMID: 29112715
+ 
+
+                     =======================
+
+integron_finder is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+integron_finder is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program (COPYING file).
+If not, see <http://www.gnu.org/licenses/>.
+
+                     =======================
+
+command used: integron_finder ../data/250genomes/Enterobacter/Enterobacter/ncbi_dataset/data/GCF_039572145.1/GCF_039572145.1_ASM3957214v1_genomic.fna --local-max --outdir results/250genomes/IF2 --gbk --cpu 4 -dt 4000 --evalue-attc 1 --max-attc-size 200 --min-attc-size 40
+
+                     =======================
+
+[0m
+INFO     : ############ Processing replicon NZ_JAYDXE010000001.1 (1/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000001.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000001.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000001.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000002.1 (2/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000002.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000002.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000002.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000003.1 (3/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000003.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000003.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000003.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000004.1 (4/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000004.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000004.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000004.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000005.1 (5/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000005.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000005.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000005.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000006.1 (6/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000006.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000006.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000006.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000007.1 (7/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000007.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000007.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000007.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000008.1 (8/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000008.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000008.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000008.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000009.1 (9/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000009.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000009.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000009.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000010.1 (10/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000010.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000010.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000010.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000011.1 (11/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000011.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000011.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000011.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000012.1 (12/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000012.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000012.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000012.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000013.1 (13/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000013.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000013.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000013.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000014.1 (14/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000014.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000014.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000014.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000015.1 (15/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000015.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000015.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000015.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000016.1 (16/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000016.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000016.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000016.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000017.1 (17/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000017.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000017.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000017.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000018.1 (18/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000018.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000018.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000018.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000019.1 (19/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000019.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000019.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000019.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000020.1 (20/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000020.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000020.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000020.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000021.1 (21/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000021.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000021.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000021.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000022.1 (22/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000022.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000022.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000022.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000023.1 (23/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000023.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000023.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000023.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000024.1 (24/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000024.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000024.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000024.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000025.1 (25/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000025.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000025.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000025.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000026.1 (26/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000026.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000026.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000026.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000027.1 (27/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000027.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000027.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000027.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000028.1 (28/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000028.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000028.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000028.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000029.1 (29/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000029.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000029.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000029.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000030.1 (30/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000030.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000030.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000030.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000031.1 (31/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000031.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000031.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000031.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000032.1 (32/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000032.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000032.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000032.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000033.1 (33/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000033.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000033.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000033.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000034.1 (34/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000034.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000034.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000034.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000035.1 (35/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000035.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000035.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000035.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000036.1 (36/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000036.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000036.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000036.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000037.1 (37/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000037.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000037.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000037.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000038.1 (38/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000038.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000038.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000038.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000039.1 (39/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000039.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000039.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000039.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000040.1 (40/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000040.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000040.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000040.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000041.1 (41/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000041.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000041.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000041.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000042.1 (42/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000042.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000042.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000042.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000043.1 (43/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000043.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000043.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000043.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000044.1 (44/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000044.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000044.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000044.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000045.1 (45/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000045.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000045.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000045.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000046.1 (46/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000046.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000046.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000046.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000047.1 (47/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000047.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000047.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000047.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000048.1 (48/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000048.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000048.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000048.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000049.1 (49/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000049.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000049.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000049.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000050.1 (50/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000050.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 1 CALIN element(s) found with a total of 1 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : 	searched 19011->21732 in top strand(s) found 0 attc sites
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000050.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 1 CALIN element(s) found with a total of 2 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Adding proteins ... :
+INFO     : Writing out results for replicon NZ_JAYDXE010000050.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000051.1 (51/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000051.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000051.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000051.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000052.1 (52/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000052.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000052.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000052.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000053.1 (53/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000053.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000053.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000053.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000054.1 (54/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000054.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000054.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000054.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000055.1 (55/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000055.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000055.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000055.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000056.1 (56/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000056.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000056.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000056.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000057.1 (57/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000057.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000057.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000057.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000058.1 (58/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000058.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000058.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000058.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000059.1 (59/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000059.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000059.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000059.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000060.1 (60/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000060.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000060.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000060.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000061.1 (61/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000061.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000061.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000061.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000062.1 (62/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000062.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000062.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000062.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000063.1 (63/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000063.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000063.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000063.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000064.1 (64/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000064.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000064.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000064.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000065.1 (65/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000065.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000065.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000065.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000066.1 (66/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000066.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000066.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000066.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000067.1 (67/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000067.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000067.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000067.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000068.1 (68/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000068.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000068.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000068.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000069.1 (69/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000069.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000069.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000069.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000070.1 (70/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000070.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000070.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000070.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000071.1 (71/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000071.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000071.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000071.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000072.1 (72/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000072.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000072.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000072.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000073.1 (73/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000073.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000073.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000073.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000074.1 (74/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000074.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 1 CALIN element(s) found with a total of 1 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000074.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000074.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000075.1 (75/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000075.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000075.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000075.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000076.1 (76/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000076.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000076.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000076.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000077.1 (77/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000077.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000077.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000077.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000078.1 (78/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000078.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000078.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000078.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000079.1 (79/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000079.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000079.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000079.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000080.1 (80/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000080.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000080.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000080.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000081.1 (81/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000081.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000081.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000081.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000082.1 (82/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000082.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000082.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000082.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000083.1 (83/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000083.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000083.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000083.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000084.1 (84/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000084.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000084.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000084.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000085.1 (85/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000085.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000085.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000085.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000086.1 (86/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000086.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000086.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000086.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000087.1 (87/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000087.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000087.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000087.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000088.1 (88/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000088.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000088.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000088.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000089.1 (89/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000089.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000089.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000089.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000090.1 (90/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000090.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000090.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000090.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000091.1 (91/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000091.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000091.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000091.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000092.1 (92/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000092.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000092.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000092.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000093.1 (93/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000093.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000093.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000093.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000094.1 (94/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000094.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000094.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000094.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000095.1 (95/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000095.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000095.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000095.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000096.1 (96/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000096.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000096.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000096.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000097.1 (97/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000097.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000097.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000097.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000098.1 (98/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000098.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000098.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000098.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000099.1 (99/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000099.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000099.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000099.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000100.1 (100/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000100.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000100.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000100.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000101.1 (101/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000101.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000101.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000101.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000102.1 (102/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000102.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000102.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000102.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000103.1 (103/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000103.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000103.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000103.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000104.1 (104/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000104.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000104.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000104.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000105.1 (105/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000105.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000105.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000105.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000106.1 (106/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000106.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000106.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000106.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000107.1 (107/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000107.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000107.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000107.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000108.1 (108/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000108.1, there are:
+INFO     : - 1 complete integron(s) found with a total 1 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : 	searched 2491->2691 in top strand(s) found 0 attc sites
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000108.1, there are:
+INFO     : - 1 complete integron(s) found with a total 1 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Adding proteins ... :
+INFO     : Writing out results for replicon NZ_JAYDXE010000108.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000109.1 (109/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000109.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000109.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000109.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000110.1 (110/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000110.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000110.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000110.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000111.1 (111/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000111.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000111.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000111.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000112.1 (112/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000112.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000112.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000112.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000113.1 (113/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000113.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000113.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000113.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000114.1 (114/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000114.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000114.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000114.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000115.1 (115/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000115.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000115.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000115.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000116.1 (116/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000116.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000116.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000116.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000117.1 (117/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000117.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 1 CALIN element(s) found with a total of 2 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : 	searched 1737->1937 in both strand(s) found 2 attc sites
+INFO     : 	searched 0->200 in both strand(s) found 2 attc sites
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000117.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 1 CALIN element(s) found with a total of 3 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Adding proteins ... :
+INFO     : Writing out results for replicon NZ_JAYDXE010000117.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000118.1 (118/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000118.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000118.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000118.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000119.1 (119/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000119.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000119.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000119.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000120.1 (120/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000120.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000120.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000120.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000121.1 (121/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000121.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000121.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000121.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000122.1 (122/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000122.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000122.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000122.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000123.1 (123/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000123.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000123.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000123.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000124.1 (124/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000124.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000124.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000124.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000125.1 (125/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000125.1/NZ_JAYDXE010000125.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000125.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000126.1 (126/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000126.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000126.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000126.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000127.1 (127/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000127.1/NZ_JAYDXE010000127.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000127.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000128.1 (128/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000128.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000128.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000128.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000129.1 (129/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000129.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000129.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000129.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000130.1 (130/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000130.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000130.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000130.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000131.1 (131/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000131.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000131.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000131.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000132.1 (132/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000132.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000132.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000132.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000133.1 (133/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000133.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000133.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000133.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000134.1 (134/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000134.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000134.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000134.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000135.1 (135/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000135.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000135.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000135.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000136.1 (136/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000136.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000136.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000136.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000137.1 (137/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000137.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000137.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000137.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000138.1 (138/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000138.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000138.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000138.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000139.1 (139/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000139.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000139.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000139.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000140.1 (140/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000140.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000140.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000140.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000141.1 (141/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000141.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000141.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000141.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000142.1 (142/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000142.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000142.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000142.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000143.1 (143/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000143.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000143.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000143.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000144.1 (144/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000144.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000144.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000144.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000145.1 (145/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000145.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000145.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000145.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000146.1 (146/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000146.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000146.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000146.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000147.1 (147/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000147.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 1 CALIN element(s) found with a total of 1 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : 	searched 562->762 in both strand(s) found 0 attc sites
+INFO     : 	searched 0->200 in both strand(s) found 0 attc sites
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000147.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 1 CALIN element(s) found with a total of 2 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Adding proteins ... :
+INFO     : Writing out results for replicon NZ_JAYDXE010000147.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000148.1 (148/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000148.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000148.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000148.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000149.1 (149/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000149.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000149.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000149.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000150.1 (150/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000150.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000150.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000150.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000151.1 (151/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000151.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000151.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000151.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000152.1 (152/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000152.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000152.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000152.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000153.1 (153/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000153.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000153.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000153.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000154.1 (154/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000154.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000154.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000154.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000155.1 (155/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000155.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000155.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000155.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000156.1 (156/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000156.1/NZ_JAYDXE010000156.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000156.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000157.1 (157/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000157.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000157.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000157.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000158.1 (158/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000158.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000158.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000158.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000159.1 (159/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000159.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000159.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000159.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000160.1 (160/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000160.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000160.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000160.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000161.1 (161/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000161.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000161.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000161.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000162.1 (162/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000162.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000162.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000162.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000163.1 (163/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000163.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000163.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000163.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000164.1 (164/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000164.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000164.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000164.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000165.1 (165/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000165.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000165.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000165.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000166.1 (166/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000166.1/NZ_JAYDXE010000166.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000166.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000167.1 (167/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000167.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000167.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000167.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000168.1 (168/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000168.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000168.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000168.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000169.1 (169/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000169.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000169.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000169.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000170.1 (170/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000170.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000170.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000170.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000171.1 (171/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000171.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000171.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000171.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000172.1 (172/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000172.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000172.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000172.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000173.1 (173/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000173.1/NZ_JAYDXE010000173.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000173.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000174.1 (174/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000174.1/NZ_JAYDXE010000174.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000174.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000175.1 (175/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000175.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000175.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000175.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000176.1 (176/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000176.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000176.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000176.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000177.1 (177/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000177.1/NZ_JAYDXE010000177.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000177.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000178.1 (178/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000178.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000178.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000178.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000179.1 (179/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000179.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000179.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000179.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000180.1 (180/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000180.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000180.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000180.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000181.1 (181/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000181.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000181.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000181.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000182.1 (182/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000182.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000182.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000182.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000183.1 (183/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000183.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000183.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000183.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000184.1 (184/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000184.1/NZ_JAYDXE010000184.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000184.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000185.1 (185/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000185.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000185.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000185.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000186.1 (186/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000186.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000186.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000186.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000187.1 (187/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000187.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000187.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000187.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000188.1 (188/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000188.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000188.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000188.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000189.1 (189/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000189.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000189.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000189.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000190.1 (190/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000190.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000190.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000190.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000191.1 (191/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000191.1/NZ_JAYDXE010000191.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000191.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000192.1 (192/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000192.1/NZ_JAYDXE010000192.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000192.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000193.1 (193/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000193.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000193.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000193.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000194.1 (194/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000194.1/NZ_JAYDXE010000194.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000194.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000195.1 (195/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000195.1/NZ_JAYDXE010000195.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000195.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000196.1 (196/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000196.1/NZ_JAYDXE010000196.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000196.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000197.1 (197/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000197.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000197.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000197.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000198.1 (198/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000198.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000198.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000198.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000199.1 (199/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000199.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000199.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000199.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000200.1 (200/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000200.1/NZ_JAYDXE010000200.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000200.1 ############
+INFO     : ############ Processing replicon NZ_JAYDXE010000201.1 (201/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000201.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000201.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000201.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000202.1 (202/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000202.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000202.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000202.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000203.1 (203/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000203.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000203.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000203.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000204.1 (204/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000204.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000204.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000204.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000205.1 (205/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000205.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000205.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000205.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000206.1 (206/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000206.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 1 CALIN element(s) found with a total of 1 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : 	searched 18->218 in both strand(s) found 2 attc sites
+INFO     : 	searched 0->200 in both strand(s) found 2 attc sites
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000206.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000206.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000207.1 (207/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000207.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000207.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000207.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000208.1 (208/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000208.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000208.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000208.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000209.1 (209/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000209.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000209.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000209.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000210.1 (210/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000210.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000210.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000210.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000211.1 (211/212) ############
+
+INFO     : Starting Default search ... :
+INFO     : Default search done... : 
+INFO     : In replicon NZ_JAYDXE010000211.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Starting search with local_max...:
+INFO     : Search with local_max done... :
+INFO     : In replicon NZ_JAYDXE010000211.1, there are:
+INFO     : - 0 complete integron(s) found with a total 0 attC site(s)
+INFO     : - 0 CALIN element(s) found with a total of 0 attC site(s)
+INFO     : - 0 In0 element(s) found with a total of 0 attC site
+INFO     : Writing out results for replicon NZ_JAYDXE010000211.1
+INFO     : ############ Processing replicon NZ_JAYDXE010000212.1 (212/212) ############
+
+WARNING  : The protein file: '/home/mba/Documents/AransayMarta/PracticasExternas/results/250genomes/IF2/Results_Integron_Finder_GCF_039572145.1_ASM3957214v1_genomic/tmp_NZ_JAYDXE010000212.1/NZ_JAYDXE010000212.1.prt' is empty cannot perform hmmsearch on it.
+WARNING  : ############ Skip replicon NZ_JAYDXE010000212.1 ############
+INFO     : Merging integrons results.
+

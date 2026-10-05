@@ -9,7 +9,7 @@ from pipeline.useful_funct import contig_to_genome
 from pipeline.analyze_Pc import extract_integron_info_gbk
 
 # -------- Paths (copy them from your analyze_methodscomparison.py if they differ)
-n = 5                                                    # genomes per species
+n = 100                                                    # genomes per species
 genomes_dir = f"../data/{n}genomes"
 tsv = f"results/{n}genomes/blast/blast_Int1_Pc_pattern.fa.tsv"
 if2_dir = f"results/{n}genomes/IF2"
@@ -51,3 +51,6 @@ for g in disc_genomes:
         if not d["calin"]:
             print(f"{g}  {d['locus_id']}  {d['start']}-{d['end']}  strand {d['strand']}  "
                   f"{d['integron_type']}  {d['integron_id']}")
+
+            ## por otro lado quiero que solo printee aquellas que tienen más hits en IF2 que en BLAST
+            # y que filtre los h its de blast en funcin del tamaño (<1000 q no salga)
