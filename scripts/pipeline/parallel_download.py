@@ -70,7 +70,6 @@ def processing(directory, n_split = 100,
     """
     Processes the genome downloads in chunks.
 
-    
     Args
     ------
     directory (str): The target root directory for the genomes.
@@ -166,5 +165,5 @@ def process_all(dirs, total_workers = 18,
             if not state_processing: # state_processing is bool
                 failed.append(name_species) # If False, exeuction has failed
 
-    # Exiting the with block ensures all threads have fully finished
+    # When the with block finishes, ensures that all threads have finished
     return failed

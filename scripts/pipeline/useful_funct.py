@@ -1,9 +1,11 @@
 # Script with useful functions
 import os, glob, re
 
+#------------------------ Function to list files in a directory with a specific extension
 def list_fasta_files(directory, depth = 1, extension = "*.fna"):
     """
-    Gets the paths of all FASTA files (.fna) stored within the subfolders of a directory.
+    Gets the paths of all files with a specific extension stored within the subfolders of a directory.
+    Default extension is set to fasta files (*.fna). 
 
     Args
     -------
@@ -15,24 +17,27 @@ def list_fasta_files(directory, depth = 1, extension = "*.fna"):
 
     Return
     --------
-    genome_paths (list): A list with the full paths to each found fasta (.fna) file.
+    genomes_path_glob (list): A list with the full paths to each found fasta (.fna) file.
     """
     # Check genome files
     if not os.path.isdir(directory):
         raise FileNotFoundError(f"The directory {directory} was not found.")
+    # To avoid errors with the path (to add '/')
     wildcard = ""
     for n in range(0, depth):
-        if n>0: wildcard += "/"
+        if n > 0: # Add '/' only if it is not the first iteration
+            wildcard += "/"
+        # Add the wildcard to the path
         wildcard += "*"
         
     # Set the genome file path pattern
     genomes_path = os.path.join(directory, wildcard, extension)
-    # Use glob to correctly intepret the wildcard (*)
+    # Use glob to correctly intepret the wildcard
     genomes_path_glob = sorted(glob.glob(genomes_path))
     
     return genomes_path_glob
 
-
+#------------------------ Function to map contigs IDs to their genome directory
 def contig_to_genome(dir_genomes):
     """
     Creates a mapping dictionary between contig IDs and their parent genome directories.
@@ -61,7 +66,7 @@ def contig_to_genome(dir_genomes):
                     contig2genome[id] = genome_path
     return contig2genome
 
-#------------------------ Function to normalize the accession between results of methods
+#------------------------ Function to normalize accessions of genomes
 def genome_key(name):
     """
     Extracts and normalizes the NCBI genome accession number from a given string.
@@ -83,7 +88,7 @@ def genome_key(name):
         accession = str(name)
     return accession
 
-#------------------------ Function to deduplicate files
+#------------------------ Function to deduplicate files (based on genome accessions)
 def unique_genome_files(files):
     """
     Keeps one file per assembly (GCF and GCA versions of a genome are the same).
@@ -97,7 +102,11 @@ def unique_genome_files(files):
     unique (dict): Dictionary with the genome accession as the key and the path
                    to the file as the value
     """
+    # Dictionary to store the unique files
     unique = {}
     for file in sorted(files):
-        unique.setdefault(genome_key(file), file) # Keeps the first one
+        accession = genome_key(file) # Extracts the genome accession
+        # returns the value if the key exists, else inserts key with default
+        unique.setdefault(accession, file) # Keeps the first 
+        
     return unique 

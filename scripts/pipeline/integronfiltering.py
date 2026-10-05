@@ -6,7 +6,6 @@ import os
 
 
 ############## Setup ----------------------------------------
-# FIXME: Cuando acabe, hay que adaptar esto a cómo se encuentre finalmente!
 
 current_dir = os.path.dirname(__file__) # __file__ has the path of the current .py 
 HattCI_dir = os.path.join(current_dir, "T3_integronfiltering", "HattCI")
@@ -73,18 +72,22 @@ def integron_filtering(genome_path, # Path to the genome
 
     Return
     ------
-    ruta_genoma_filtrado (str): The path to the generated filtered genome. 
+    filtered_genome_path (str): The path to the generated filtered genome. 
                                 If an error occurs, returns the original genome path (genome_path).
     """
-    genome_path_abs = os.path.abspath(genome_path)
-    outdir_abs = os.path.abspath(outdir)
+    genome_path_abs = os.path.abspath(genome_path) # Absolute path of the genome
+    outdir_abs = os.path.abspath(outdir) # Absolute path of the output directory
+    # Path of the script
     script_path = os.path.abspath("./scripts/pipeline/T3_integronfiltering/attC-screening.sh")
 
     # integron_filtering command 
     integronfiltering_cmd = [script_path, # path to the .sh
-                             "-m", covariance_model, "-i", genome_path_abs, "-o", outdir_abs,
+                             "-m", covariance_model, 
+                             "-i", genome_path_abs, 
+                             "-o", outdir_abs,
                               # Numbers must be a str
-                             "-b", str(cutoff_bit), "-l", str(min_bp), "-t", str(cpu)]
+                             "-b", str(cutoff_bit), 
+                             "-l", str(min_bp), "-t", str(cpu)]
 
 
     print(f"Executing: \n{shlex.join(integronfiltering_cmd)}")
@@ -92,10 +95,11 @@ def integron_filtering(genome_path, # Path to the genome
     try:
         subprocess.run(integronfiltering_cmd, 
                        capture_output = True, text = True, check = True,
-                       cwd = HattCI_dir)
+                       cwd = HattCI_dir) # To execute the .sh in the HattCI dir, where the attC-screening.sh is located
     except subprocess.CalledProcessError as e:
         print(f"Error executing integron_filtering:\n{e.stderr}")
         return genome_path # Initial path
+    
     # Function to adapt the path to the new filtered genome
     filtered_genome_path = output_integronfiltering(outdir)
     

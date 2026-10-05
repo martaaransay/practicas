@@ -1,6 +1,8 @@
-from pipeline.downloadgenomes import datasets_flags, taxon_acc_flag, \
-                               quality_filter_genomes, download_genomes, \
-                               unzip_rehydrate
+#FIXME:
+
+# PARA EJECUTAR ESTO HAY QUE USAR python -m scripts.test.testT2
+
+from scripts.pipeline.downloadgenomes import datasets_flags, taxon_acc_flag
 
 #------------------------ Function to define flags for genome download (datasets download)
 flags01 = datasets_flags(assembly_source = "refseq",

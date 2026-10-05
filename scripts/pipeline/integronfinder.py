@@ -77,7 +77,7 @@ def Integron_Finder(genome_path, # Path to the genome
     gbk_files (list): List of the resulting .gbk files after executing IntegronFinder2.
                       Returns None if an error occurs during execution.
     """
-    # Set to 4 the max number of cpu
+    # Set to 4 the max number of cpu (as recommended by IntegronFinder2)
     if cpu > 4: cpu = 4
     # IntegronFinder2 command
     integronfinder_cmd = ["integron_finder", genome_path,
@@ -97,20 +97,20 @@ def Integron_Finder(genome_path, # Path to the genome
     # Addition of arguments with path value:
     if attc_model is not None:
         if not os.path.isfile(attc_model): # Check for correct path
-            print(f"ttc_model not found: {attc_model}")
+            print(f"attc_model introduced not found: {attc_model}")
         else:
             integronfinder_cmd += ["--attc-model", attc_model]
         
     if topology_file is not None:
         if not os.path.isfile(topology_file): # Check for correct path
-            print(f"topology_file not found: {topology_file}")
+            print(f"topology_file introduced not found: {topology_file}")
         else:
             integronfinder_cmd += ["--topology-file", topology_file]
 
     print(f"Executing: \n{shlex.join(integronfinder_cmd)}")
     try:
         subprocess.run(integronfinder_cmd, 
-                       check=True, capture_output=True, text=True)
+                       check = True, capture_output = True, text = True)
     except subprocess.CalledProcessError as e:
         print(f"Error executing IntegronFinder2:\n{e.stderr}")
         return None

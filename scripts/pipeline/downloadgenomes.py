@@ -1,13 +1,12 @@
 # Import libraries 
-import subprocess # to execute cmd
-import shlex # to check what is sent to the console
-import json # to parse .json correctly
+import subprocess 
+import shlex 
+import json 
 import os 
 import random
 
 # --------Definition of functions
 #------------------------ Function to define flags for genome download (datasets download)
-#FIXME -> He dejado todas las opciones posibles que acepta datasets, pero pdoemos reducir las opciones¿¿¿¿ hasta cuanto vamos a considerar???
 def datasets_flags(assembly_source = None, # RefSeq | GenBank | None =all
                    assembly_level = None, # comma-separated (string): chromosome | complete | contig | scaffold | None =all
                    annotated = None, # To exclude annotated genomes  (≠ None)
@@ -83,15 +82,15 @@ def taxon_acc_flag(source, # taxon | accession | inputfile
     --------
     source_flags (list): List of strings with the unpacked source arguments for datasets.
     """
-    
-    if source not in ["taxon", "accession", "inputfile"]: # Control of valid arguments (inputfile to internal control is added)
+    # Control of valid arguments (inputfile to internal control is added)
+    if source not in ["taxon", "accession", "inputfile"]: 
         raise ValueError(f"One of the valid options was not provided: taxon | accession | inputfile \
                         \n (provided: {source})")
     
     if source == "inputfile": # File
         if not os.path.isfile(name): # Check in case the file does not exist
             raise FileNotFoundError(f"The file {name} was not found.")
-            return
+            
         flag = ["accession", "--inputfile", name] # Flags to add with the name of the file
     
     else:
@@ -113,6 +112,7 @@ def quality_filter_genomes(source, name, # Arguments for the taxon_acc_flag(sour
                            flags = None): 
     """
     Queries genome metadata in NCBI datasets, filters by quality metrics, and saves valid accessions in a text file.
+    
     Args
     ------------
     source (str): Source type for the query.
@@ -143,12 +143,11 @@ def quality_filter_genomes(source, name, # Arguments for the taxon_acc_flag(sour
     
     print(f"Executing: \n{shlex.join(summary_cmd)}")
     valid_accs = [] # List to store valid accessions 
-    #FIXME: tomar decisión de como gestionar las excepciones!
     try:
         # Start the process 
         process = subprocess.Popen(summary_cmd, 
                                    stdout = subprocess.PIPE, # Capture the output
-                                   text = True)
+                                   text = True) # Returns the output as text instead of bytes
         
         for line in process.stdout: # Reads the output line by line
             if not line.strip(): continue # Skips empty lines
@@ -215,15 +214,21 @@ def unzip(filename = "ncbi_dataset.zip"):
     -------
     filename (str, optional): Path to the ZIP file to decompress. 
                               Default is "ncbi_dataset.zip".
+    
+    Return
+    -------
+    target_dir (str): Path to the directory where the ZIP file was decompressed.
+                      If the file does not exist or an error occurs, returns None.
     """
     if not os.path.isfile(filename): # Check that the file exists
         raise FileNotFoundError(f"The file {filename} was not found")
 
     ############# ------------------- unzip
-    # If there' is no path in the filename, returns "."
-    out_dir = os.path.dirname(filename) or "." 
+   
+    out_dir = os.path.dirname(filename) or "."  # If there is no path in the filename, returns "."
     new_file = os.path.basename(filename)
     new_folder = os.path.splitext(new_file)[0]
+    # Obtain the target directory
     target_dir = os.path.join(out_dir, new_folder)
 
     unzip_cmd = ["unzip",
@@ -235,12 +240,13 @@ def unzip(filename = "ncbi_dataset.zip"):
     print(f"Executing: \n{shlex.join(unzip_cmd)}")
     try:
         subprocess.run(unzip_cmd, 
-                       check=True, capture_output=True, text=True)
-    except subprocess.CalledProcessError as e:
+                       check = True, # Check for errors
+                       capture_output = True, # Capture the output (stdout + stderr)
+                       text = True)
+    except subprocess.CalledProcessError as e: # If the command fails, print the error message
         print(f"Error executing unzip:\n{e.stderr}")
         return None
     return target_dir
-
 
 
 ##------------------------ Function to download genomes
@@ -272,6 +278,11 @@ def download_genomes(source, name, # Arguments for the taxon_acc_flag(source, na
                           Default is 1.
     n_tries (int, optional): Number of tries to try the download in case of error.
                              Default is 5.
+    
+    Return
+    --------
+    target_dir (str): Path to the directory where the ZIP file was decompressed.
+                      If the file does not exist or an error occurs, returns None.
     """
     # Check that the directories exist to prevent errors
     out_dir = os.path.dirname(filename)
@@ -281,7 +292,8 @@ def download_genomes(source, name, # Arguments for the taxon_acc_flag(source, na
         quality_filter_flag = True
     if quality_filter_flag:
         filter_result = quality_filter_genomes(source, name, filename, # Executes the filtering function
-                                               target_num = target_num, seed = seed, flags = flags) 
+                                               target_num = target_num, 
+                                               seed = seed, flags = flags) 
         if not filter_result: # If there is no accession, the datasets command cannot be used
             # The created directories are removed:
             if out_dir and os.path.exists(out_dir):
@@ -292,32 +304,39 @@ def download_genomes(source, name, # Arguments for the taxon_acc_flag(source, na
         source, name = filter_result # Unpack tuple
 
     # If no flags were added, empty list
-    if flags is None:
-        flags = []
+    if flags is None: flags = []
 
     ########### -------------------- datasets download
-    download_cmd = ["datasets", "download", "genome", *taxon_acc_flag(source, name), 
-                    "--dehydrated", "--filename", filename, *flags]
+    download_cmd = ["datasets", "download", "genome", 
+                    *taxon_acc_flag(source, name), 
+                    "--dehydrated", "--filename", 
+                    filename, *flags]
     
     print(f"Executing: \n{shlex.join(download_cmd)}")
-    for n in range(1, n_tries+1):
+    for n in range(1, n_tries + 1):
         try:
             subprocess.run(download_cmd, 
-                        check=True, capture_output=True, text=True) 
+                           check = True, capture_output = True, text = True) 
             break
         # Capture the exception
         except subprocess.CalledProcessError as e:
             print(f"Error executing datasets download:\n{e.stderr}.\nNumber of try: {n}.")
+            
             # The created directories are removed (provided they are completely empty)
             if n == n_tries:
                 if out_dir and os.path.exists(out_dir):
                     if not os.listdir(out_dir): 
-                        os.removedirs(out_dir) # Removes empty directories (parent directories too)
+                        # Removes empty directories (parent directories too)
+                        os.removedirs(out_dir) 
                 return None
         
-    target_dir = unzip(filename)
+    target_dir = unzip(filename) # Executes unzip function to decompress the ZIP file
+    if not target_dir: # If the unzip function fails, return None
+        return None
+    
     return target_dir
 
+##------------------------ Function to rehydrate genomes
 def rehydrate(directory):
     """
     Executes the rehydrate datasets command.
@@ -332,46 +351,9 @@ def rehydrate(directory):
     print(f"Executing: \n{shlex.join(rehydrate_cmd)}")
     try:
         subprocess.run(rehydrate_cmd, 
-                        check=True, capture_output=True, text=True) 
+                       check = True, capture_output = True, text = True) 
     except subprocess.CalledProcessError as e:
         print(f"Error executing datasets rehydrate:\n{e.stderr}")
         return
 
     return
-
-
-# -------- Main code
-
-
-# FIXME -> no salen las barras de progreso al ejecutar este script, pero si quitamos el argumento (capture_output=True)
-#          en subprocess.run, sale -> solo que ya no se captura el error así (habría que eliminar esa parte de:
-#          (except subprocess.CalledProcessError as e:)
-#          PERO OJO -> SOLO EN LAS QUE HAGA FALTA (EJ. en unzip no!)
-
-# ###########PRUEBAS 16/09  -(habrá que eliminarlo):
-# # Para probar si IntegronFinder2 solo identifica P2
-# file01 = "results/pruebas_IntegronFinderCheck/EC.zip"
-# flags01 = definir_flags(assembly_source="RefSeq", 
-#                       assembly_level=["complete", "chromosome"],
-#                       exclude_atypical=True, 
-#                       mag=False)
-
-# check01 = descargar_genomas(origen="taxon", 
-#                           nombre="Escherichia coli", 
-#                           filename=file01, 
-#                           flags=flags01)
-
-####PRUEBAS CLUSTERIZADO 17/09
-
-if __name__ == "__main__":
-    # Code for Klebsiella pneumoniae without quality filtering
-    flags_general = datasets_flags()
-
-    file_general = "results/T2_check/Klebsiella.zip"
-
-    dir = download_genomes(source = "taxon", 
-                     name = "Klebsiella pneumoniae", 
-                     filename = file_general, 
-                     flags = flags_general,
-                     target_num = 250)
-    rehydrate(dir)

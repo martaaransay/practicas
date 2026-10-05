@@ -29,7 +29,7 @@ def run_blastn(query, output, db, max_target, evalue_threshold = 10):
     Return
     ------
     output (str): The path to the output file where results are saved.
-    elapsed (float): The time taken to execute the blastn command in seconds.
+    total_time (float): The time taken to execute the blastn command in seconds.
     """
     # Creates the output directory to avoid errors
     os.makedirs(os.path.dirname(output), exist_ok=True)
@@ -45,7 +45,7 @@ def run_blastn(query, output, db, max_target, evalue_threshold = 10):
     print(f"Executing: \n{shlex.join(blast_cmd)}")
     try:
         subprocess.run(blast_cmd, 
-                       check=True, capture_output=True, text=True)
+                       check = True, capture_output = True, text = True)
     except subprocess.CalledProcessError as e:
         print(f"Error executing blastn:\n{e.stderr}")
         return
@@ -54,7 +54,8 @@ def run_blastn(query, output, db, max_target, evalue_threshold = 10):
 
     return output, total_time
 
-def process_blast_tsv(path):
+#------------------------ Function to process a BLAST tabular output (outfmt 6)
+def process_blast_tsv(path, min_length = 1000):
     """
     Reads a BLAST tabular output (outfmt 6) and adds strand and normalized
     subject coordinates.
@@ -62,6 +63,8 @@ def process_blast_tsv(path):
     Args
     ------
     path (str): The path to the BLAST tabular output file.
+    min_length (int): Minimum length of hits to be considered.
+                      Default to 1000.
 
     Return
     ------
@@ -73,13 +76,15 @@ def process_blast_tsv(path):
                        If the file is empty, an empty DataFrame with the same
                        columns is returned.
     """
+    # Column names of the BLAST tabular output (outfmt 6)
     columns = ["query_id", "seq_id", "identity", "length", "mismatch", "gapopen", 
                "query_start", "query_end", "seq_start", "seq_end", "Evalue", "BitScore"]
     try: # Reads the csv file
-        df = pd.read_csv(path, sep="\t", names = columns)
+        df = pd.read_csv(path, sep = "\t", names = columns)
     except pd.errors.EmptyDataError:
-        # If no hits,, keeps the expected columns 
+        # If no hits, keeps the expected columns 
         df = pd.DataFrame(columns = columns)
+    df = df[df["length"] >= min_length] # Filters hits by minimum length
     # If start is lower than end, the strand is positive
     pos_strand = df["seq_start"] <= df["seq_end"]
     # Assign the strand column based on the comparison of seq_start and seq_end
@@ -87,8 +92,10 @@ def process_blast_tsv(path):
     # Assign the start and end columns based on the minimum and maximum of seq_start and seq_end
     df["start"] = df[["seq_start", "seq_end"]].min(axis=1)
     df["end"] = df[["seq_start", "seq_end"]].max(axis=1)
+    
     return df
 
+#------------------------ Function to extract the nucleotide sequence of each BLAST hit
 def extract_hit_sequences(hits_df):
     """
     Extracts the nucleotide sequence of each BLAST hit from its genome fasta file.
@@ -102,30 +109,35 @@ def extract_hit_sequences(hits_df):
     ------
     hits_df (pd.DataFrame): A copy of the input with an additional "sequence" column. 
     """
+
     hits_df = hits_df.copy()
     hits_df["sequence"] = ""
 
     # Group by genome so each .fna file is read only once
     for genome_dir, group in hits_df.groupby("genome_dir"):
         # Get the path to the .fna file in the genome directory
-        fna_ext = glob.glob(os.path.join(genome_dir, "*.fna"))
-        fna = fna_ext[0]
+        fna_ext = glob.glob(os.path.join(genome_dir, "*.fna")) # list
+        fna = fna_ext[0] # string
 
         # Parse the fasta file and create a dictionary of contig sequences
         contigs = SeqIO.to_dict(SeqIO.parse(fna, "fasta"))
 
         for idx, row in group.iterrows(): # Iterate over each hit in the group
-            # Extract the sequence of the hit from the contig sequence
-            # (BLAST coordinates are 1-based and inclusive)
-            seq = contigs[row["seq_id"]].seq[row["start"] - 1 : row["end"]]
+            
+            contig = contigs[row["seq_id"]] # For the current contig, get the SeqRecord object
+            # Extract the sequence from the contig using the start and end coordinates
+            seq = contig.seq[row["start"] - 1 : row["end"]] # (BLAST coordinates are 1-based and inclusive)
+            # If the strand is negative, reverse complement the sequence
             if row["strand"] == "-":
-                seq = seq.reverse_complement()  # Orient the sequence like the query
+                seq = seq.reverse_complement()
+
             # Add the extracted sequence to the hits_df
             hits_df.at[idx, "sequence"] = str(seq)
 
     return hits_df
 
-def process_hits(tsv_path, dir_genomes, multifasta, extra_columns=None):
+def process_hits(tsv_path, dir_genomes, multifasta, 
+                 min_length = 1000, extra_columns = {}):
     """
     Parses the BLAST results, removes the genomes without hits and extracts the
     sequences of the remaining hits.
@@ -135,42 +147,52 @@ def process_hits(tsv_path, dir_genomes, multifasta, extra_columns=None):
     tsv_path (str): The path to the BLAST tabular output file.
     dir_genomes (str): The path to the directory containing one subdirectory per genome.
     multifasta (str): The path to the multifasta file used as BLAST database source.
-    extra_columns (dict, optional): Extra columns to add, as
-                                    {column name: dotted path in the JSON}.
-                                    Defaults to None (only species is added).
+    min_length (int): Minimum length of hits to be considered.
+                      Default to 1000.
+    extra_columns (dict, optional): Extra columns to add, as {name: path in the JSON}.
+                                    Defaults to {}}.
 
     Return
     ------
-    final_df (pd.DataFrame): One row per hit with the columns genome, genome_dir, seq_id, 
-                             start, end, strand and sequence.
+    df (pd.DataFrame): One row per hit with the columns:
+                       genome, genome_dir, seq_id, start, end, strand and sequence.
+                       If extra_columns is provided, additional columns are added.
 
     """
     # Read the BLAST results and add strand and normalized coordinates
-    hits_df = process_blast_tsv(tsv_path)  
+    hits_df = process_blast_tsv(tsv_path, min_length = min_length)
+    # Map of each contig ID to its corresponding genome directory 
     contig2genome = contig_to_genome(dir_genomes)
 
     # Control to prevent deleting everything by mistake
     if hits_df.empty: # If BLAST returned no hits, something failed
         raise ValueError("BLAST returned no hits: nothing was deleted.")
-    # If there are seq_ids without a corresponding genome, something failed
-    if not hits_df["seq_id"].isin(contig2genome).all(): 
-        raise ValueError("Hay seq_id sin genoma asignado: no borro nada.")
     
     # Add genome_dir and genome columns to hits_df
+    # For each seq_id in hits_df, map gets the corresponding genome directory from contig2genome
     hits_df["genome_dir"] = hits_df["seq_id"].map(contig2genome)
+    # For each genome_dir in hits_df, os.path.basename gets the genome accession (filename)
     hits_df["genome"] = hits_df["genome_dir"].map(os.path.basename)
 
     # Genomes without any hit are removed from disk
-    genomes_with_hit = set(hits_df["genome_dir"])
-    to_delete = sorted(set(contig2genome.values()) - genomes_with_hit)
-    for each_del in to_delete:
-        shutil.rmtree(each_del)
+    all_genomes = set(contig2genome.values()) # Set of all genome directories
+    genomes_with_hit = set(hits_df["genome_dir"]) # Set of genome directories that have at least one hit
+    
+    to_delete = sorted(all_genomes - genomes_with_hit) # Set of genome directories without hits
+
+    for each_del in to_delete: # Iterates over the genome directories to delete
+        shutil.rmtree(each_del) # Remove the directory and all its contents
     # Removes multifasta file
     os.remove(multifasta)
     
-    df = hits_df[["genome", "genome_dir", "seq_id", "start", "end", "strand"]]
-    # Extracts the nucleotide sequence of each hit from its genome fasta file
-    final_df = extract_hit_sequences(df)
-    final_df = add_genome_metadata(final_df, extra_columns)
+    # Select and reorder the columns needed for the sequence extraction
+    columns_to_keep = ["genome", "genome_dir", "seq_id", "start", "end", "strand"]
+    hits_df = hits_df[columns_to_keep] # Keep only the relevant columns
 
-    return final_df
+    # Extracts the nucleotide sequence of each hit from its genome fasta file
+    final_df = extract_hit_sequences(hits_df)
+
+    # If extra_columns is provided, add the specified metadata columns to hits_df
+    df = add_genome_metadata(final_df, extra_columns)
+
+    return df
