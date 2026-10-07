@@ -55,7 +55,7 @@ def run_blastn(query, output, db, max_target, evalue_threshold = 10):
     return output, total_time
 
 #------------------------ Function to process a BLAST tabular output (outfmt 6)
-def process_blast_tsv(path, min_length = 1000):
+def process_blast_tsv(path, min_length = None):
     """
     Reads a BLAST tabular output (outfmt 6) and adds strand and normalized
     subject coordinates.
@@ -64,7 +64,7 @@ def process_blast_tsv(path, min_length = 1000):
     ------
     path (str): The path to the BLAST tabular output file.
     min_length (int): Minimum length of hits to be considered.
-                      Default to 1000.
+                      Default to None.
 
     Return
     ------
@@ -84,7 +84,8 @@ def process_blast_tsv(path, min_length = 1000):
     except pd.errors.EmptyDataError:
         # If no hits, keeps the expected columns 
         df = pd.DataFrame(columns = columns)
-    df = df[df["length"] >= min_length] # Filters hits by minimum length
+    if min_length:
+        df = df[df["length"] >= min_length] # Filters hits by minimum length
     # If start is lower than end, the strand is positive
     pos_strand = df["seq_start"] <= df["seq_end"]
     # Assign the strand column based on the comparison of seq_start and seq_end

@@ -233,7 +233,7 @@ if __name__ == "__main__":
 
         # Blastn
         each_result, each_time = run_blastn(query = each_query, 
-                                            output = f"results/{str(num_genomes_each)}genomes/700min_length/blast/blast_{name}.tsv",
+                                            output = f"../results/{str(num_genomes_each)}genomes/700min_length/blast/blast_{name}.tsv",
                                             db = f"../data/{str(num_genomes_each)}genomes/db/db",
                                             # max num of seqs to keep is the mapping length
                                             max_target = len(contig_to_genome(genomes_dir))) 
@@ -285,7 +285,7 @@ if __name__ == "__main__":
     # Divides the cores between methods
     cpu_each = max(1, os.cpu_count() // 2) 
 
-    parent_results_dir = f"results/{str(num_genomes_each)}genomes/700min_length"
+    parent_results_dir = f"../results/{str(num_genomes_each)}genomes/700min_length"
 
     with ThreadPoolExecutor(max_workers=2) as executor:
         # Usage --> run_method(idx_analysis, parent_results_dir, list_files, cpu)
