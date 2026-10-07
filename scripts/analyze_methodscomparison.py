@@ -10,10 +10,10 @@ from pipeline.analyze_Pc import extract_integron_info_gbk
 
 # -------- Paths with results to analyze
 n = 500 # Number of genomes per species
-genomes_dir = f"../data/{n}genomes"
-tsv = f"../results/{n}genomes/blast/blast_Int1_Pc_pattern.fa.tsv"
-if2_dir = f"../results/{n}genomes/IF2"
-csv = f"../results/plots/{n}genomes/genomes_hits.csv"
+genomes_dir = f"../data_practicas/{n}genomes"
+tsv = f"../results_practicas/{n}genomes/blast/blast_Int1_Pc_pattern.fa.tsv"
+if2_dir = f"../results_practicas/{n}genomes/IF2"
+csv = f"results/plots/{n}genomes/genomes_hits.csv"
 
 out_dir = f"results/plots/{n}genomes/"
 

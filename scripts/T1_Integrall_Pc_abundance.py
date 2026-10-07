@@ -165,7 +165,7 @@ def count_table_plots(count_table,
 # -------- Main code
 
 # Path to the Integrall bbdd
-path = "/home/marta/CNB/PracticasExternas/data/Integrall/Integrons-Analysis-TJ-V23/Integrons-Analysis-TJ-V23_v2.xlsx"
+path = "data/Integrall/Integrons-Analysis-TJ-V23/Integrons-Analysis-TJ-V23_v2.xlsx"
 header = 3 # Number of header lines to skip
 
 general_table = calculate_Pc_abundance(path, n_header=header, columns_name = ["Organism", "Pc"])

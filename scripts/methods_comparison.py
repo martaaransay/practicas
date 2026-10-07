@@ -194,7 +194,7 @@ if __name__ == "__main__":
         
         ## For downloading genomes from a group of species --> download_species_genomes()
         dirs = download_species_genomes(species = names, 
-                                        outdir = f"../data/{str(num_genomes_each)}genomes", 
+                                        outdir = f"../data_practicas/{str(num_genomes_each)}genomes", 
                                         target_num = num_genomes_each, 
                                         flags = flags)
         # Rehydrates all the genomes
@@ -207,14 +207,14 @@ if __name__ == "__main__":
             exit(1)
 
         # Path to the multifasta file 
-        multifasta_path = f"../data/{str(num_genomes_each)}genomes/multifasta_genomes.fasta"
+        multifasta_path = f"../data_practicas/{str(num_genomes_each)}genomes/multifasta_genomes.fasta"
 
         # Generates multifasta file
-        generate_multifasta(path_to_genomes = f"../data/{str(num_genomes_each)}genomes/*/*/ncbi_dataset/data/*/*.fna",
+        generate_multifasta(path_to_genomes = f"../data_practicas/{str(num_genomes_each)}genomes/*/*/ncbi_dataset/data/*/*.fna",
                             outfile = multifasta_path)
         # Generates the database
         generate_db(multifasta = multifasta_path,
-                    out_db = f"../data/{str(num_genomes_each)}genomes/db/db")
+                    out_db = f"../data_practicas/{str(num_genomes_each)}genomes/db/db")
 
 
     ############################## 1) BLASTn:
@@ -227,14 +227,14 @@ if __name__ == "__main__":
     all_results = {}
     all_times = {}
 
-    genomes_dir = f"../data/{num_genomes_each}genomes"
+    genomes_dir = f"../data_practicas/{num_genomes_each}genomes"
     for each_query in fasta_files: # For each query
         name = os.path.basename(each_query)
 
         # Blastn
         each_result, each_time = run_blastn(query = each_query, 
-                                            output = f"../results/{str(num_genomes_each)}genomes/700min_length/blast/blast_{name}.tsv",
-                                            db = f"../data/{str(num_genomes_each)}genomes/db/db",
+                                            output = f"../results_practicas/{str(num_genomes_each)}genomes/700min_length/blast/blast_{name}.tsv",
+                                            db = f"../data_practicas/{str(num_genomes_each)}genomes/db/db",
                                             # max num of seqs to keep is the mapping length
                                             max_target = len(contig_to_genome(genomes_dir))) 
         
@@ -285,7 +285,7 @@ if __name__ == "__main__":
     # Divides the cores between methods
     cpu_each = max(1, os.cpu_count() // 2) 
 
-    parent_results_dir = f"../results/{str(num_genomes_each)}genomes/700min_length"
+    parent_results_dir = f"../results_practicas/{str(num_genomes_each)}genomes/700min_length"
 
     with ThreadPoolExecutor(max_workers=2) as executor:
         # Usage --> run_method(idx_analysis, parent_results_dir, list_files, cpu)

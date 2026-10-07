@@ -3,7 +3,7 @@ from Bio.Seq import Seq, MutableSeq
 from Bio.SeqRecord import SeqRecord
 import re
 
-fasta = "/home/marta/CNB/PracticasExternas/data/Int1/Int1.fa"
+fasta = "data/Int1/Int1.fa"
 record = SeqIO.read(fasta, "fasta")
 Int1_sequence = record.seq
 rc_Int1_sequence = str(Seq(Int1_sequence).reverse_complement())
@@ -57,7 +57,7 @@ pattern_record = SeqRecord(seq=general_Int1_seq,
 )
 
 
-SeqIO.write(pattern_record, "/home/marta/CNB/PracticasExternas/data/Int1/Int1_Pc_pattern.fa", "fasta")
+SeqIO.write(pattern_record, "data/Int1/Int1_Pc_pattern.fa", "fasta")
 
 ######### -------------------- Sequence without Pc region (start of Pc and 100 pb upstream)
 
@@ -71,4 +71,4 @@ no_pc_record = SeqRecord(seq=Int1_100_sequence,
                          description=""
 )
 
-SeqIO.write(no_pc_record, "/home/marta/CNB/PracticasExternas/data/Int1/Int1_no_Pc.fa", "fasta")
+SeqIO.write(no_pc_record, "data/Int1/Int1_no_Pc.fa", "fasta")

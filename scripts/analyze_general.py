@@ -1,11 +1,15 @@
+# Import functions from the pipeline module
 from plot.plotting import plot_pc_by_species
 
-n_genomes = 1500
-path = f"../results/final/{n_genomes}genomes/final.csv"
-dir = f"../results/final/{n_genomes}genomes"
+n_genomes = 1500 # Number of genomes per species
+# csv with info
+path = f"../results_practicas/final/{n_genomes}genomes/final.csv"
+
+outdir = f"../results_practicas/final/{n_genomes}genomes"
+# Plots the distribution of promoters among species and Pc variants
 count_table = plot_pc_by_species(csv_path = path,
                                  title = "Distribution of Pc variants by Species - db: {n_genomes * 5} genomes ESKAPEE",
-                                 outdir = dir)
+                                 outdir = outdir)
 print(count_table)
-count_table.to_csv(f"{dir}/count_table.csv", index=False)
-
+# Saves results to csv
+count_table.to_csv(f"{outdir}/count_table.csv", index=False)
