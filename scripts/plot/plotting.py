@@ -1,10 +1,10 @@
 # Import libraries 
 import os
-from xml.parsers.expat import errors
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib_venn import venn3
+from matplotlib_venn.layout.venn3 import DefaultLayoutAlgorithm
 from matplotlib.patches import Patch
 
 # Plotting
@@ -234,16 +234,19 @@ def plot_hits_overlap(sets_dict,
     # Creates the Venn diagram with the sets and their corresponding labels and colors
     venn3(sets, set_labels=("", "", ""), # Labels for each set
           set_colors = colors, # Colors for each set
-          alpha = 0.5, ax = ax) # Transparency and axes
+          alpha = 0.5, ax = ax, # Transparency and axes
+          # Plot with the regions with the same size
+          layout_algorithm = DefaultLayoutAlgorithm(fixed_subset_sizes = (1,) *7)) # 7 regions
     
     handles = [] # List to store the legend handles
-    for color, meth in zip(colors, names): # Iterate over each method and its corresponding color
+    for color, meth, set in zip(colors, names, sets): # Iterate over each method and its corresponding color
         # Create a patch for the legend with the corresponding color and label
-        handle = Patch(facecolor = color, alpha = 0.5, label = meth)
+        handle = Patch(facecolor = color, alpha = 0.5, 
+                       label = f"{meth} (n={len(set)})")
         handles.append(handle)
 
     # Add the legend to the plot with the created handles
-    ax.legend(handles = handles, loc="upper right")
+    ax.legend(handles = handles, loc = "upper right")
 
     ax.set_title(title) # Set the title of the plot
     plt.tight_layout() # Adjusts the layout to avoid overlapping
