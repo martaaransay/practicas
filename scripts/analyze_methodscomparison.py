@@ -9,13 +9,13 @@ from pipeline.useful_funct import contig_to_genome, genome_key
 from pipeline.analyze_Pc import extract_integron_info_gbk
 
 # -------- Paths with results to analyze
-n = 10 # Number of genomes per species
+n = 500 # Number of genomes per species
 genomes_dir = f"../data/{n}genomes"
-tsv = f"results/{n}genomes/1000min_length/blast/blast_Int1_Pc_pattern.fa.tsv"
-if2_dir = f"results/{n}genomes/1000min_length/IF2"
-csv = f"results/plots/{n}genomes/1000min_length/genomes_hits.csv"
+tsv = f"../results/{n}genomes/blast/blast_Int1_Pc_pattern.fa.tsv"
+if2_dir = f"../results/{n}genomes/IF2"
+csv = f"../results/plots/{n}genomes/genomes_hits.csv"
 
-out_dir = f"results/plots/{n}genomes/1000min_length"
+out_dir = f"results/plots/{n}genomes/"
 
 # -------- 1) genomes with different number of hits in BLAST and IF2
 df = pd.read_csv(csv, 
