@@ -228,6 +228,8 @@ if __name__ == "__main__":
     all_times = {}
 
     genomes_dir = f"../data_practicas/{num_genomes_each}genomes"
+    # Creates the mapping dictionary (id : path)
+    mapping = contig_to_genome(genomes_dir)
     for each_query in fasta_files: # For each query
         name = os.path.basename(each_query)
 
@@ -236,7 +238,7 @@ if __name__ == "__main__":
                                             output = f"../results_practicas/{str(num_genomes_each)}genomes/700min_length/blast/blast_{name}.tsv",
                                             db = f"../data_practicas/{str(num_genomes_each)}genomes/db/db",
                                             # max num of seqs to keep is the mapping length
-                                            max_target = len(contig_to_genome(genomes_dir))) 
+                                            max_target = len(mapping)) 
         
         # Store results and times of each query
         all_results[each_query] = each_result
@@ -261,8 +263,7 @@ if __name__ == "__main__":
     blast_general_hits = len(blast_df)
     contigs = blast_df["seq_id"].unique()
 
-    # Creates the mapping dictionary (id : path)
-    mapping = contig_to_genome(genomes_dir)
+    
     # Set to store blast results  
     set_blast = set()
     for each_contig in contigs: # Iterates over contigs
