@@ -205,7 +205,7 @@ def quality_filter_genomes(source, name, # Arguments for the taxon_acc_flag(sour
 
     return accessions_tuple
 
-##------------------------ Function to unzip and rehydrate the genomes
+##------------------------ Function to unzip genomes
 def unzip(filename = "ncbi_dataset.zip"): 
     """
     Unzips an NCBI ZIP file.
@@ -335,25 +335,3 @@ def download_genomes(source, name, # Arguments for the taxon_acc_flag(source, na
         return None
     
     return target_dir
-
-##------------------------ Function to rehydrate genomes
-def rehydrate(directory):
-    """
-    Executes the rehydrate datasets command.
-
-    Args
-    -------
-    directory (str): The directory where the fetched file is stored.  
-    """
-    ############ ------------------- datasets rehydrate
-    rehydrate_cmd = ["datasets", "rehydrate", 
-                     "--directory", directory]
-    print(f"Executing: \n{shlex.join(rehydrate_cmd)}")
-    try:
-        subprocess.run(rehydrate_cmd, 
-                       check = True, capture_output = True, text = True) 
-    except subprocess.CalledProcessError as e:
-        print(f"Error executing datasets rehydrate:\n{e.stderr}")
-        return
-
-    return
