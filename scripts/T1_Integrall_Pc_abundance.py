@@ -100,7 +100,12 @@ def count_table_plots(count_table,
                       eskapee_count_table,
                       eskapee = ["Escherichia coli", "Klebsiella pneumoniae", 
                                               "Pseudomonas aeruginosa", "Acinetobacter baumannii",
-                                              "Enterobacter spp."]):
+                                              "Enterobacter spp."],
+                      title = ["Pc distribution in ESKAPEE species", 
+                               "Relative abundance of promoters"],
+                      outdir = "./results/Integrall_analysis",
+                      filename = "relative_abundance.png"
+                      ):
     """
     Generates and displays two side-by-side bar plots: 
     - one for general relative Pc abundance 
@@ -134,7 +139,7 @@ def count_table_plots(count_table,
     df_total.plot(kind="bar", color=colors, edgecolor="black")
 
     # Labels
-    plt.title("Relative abundance of promoters", fontweight="bold")
+    plt.title(title[0], fontweight="bold")
     plt.xlabel("Pc", fontweight="bold")
     plt.ylabel("Count", fontweight="bold")
     plt.xticks(rotation=45, ha="right")
@@ -151,7 +156,7 @@ def count_table_plots(count_table,
                          color = colors, 
                          edgecolor = "black")
 
-    plt.title("Pc distribution in ESKAPEE species", fontweight="bold")
+    plt.title(title[1], fontweight="bold")
     plt.xlabel("ESKAPEE Species", fontweight="bold")
     plt.ylabel("Count", fontweight="bold")
     plt.xticks(rotation=45, ha="right")
@@ -159,7 +164,9 @@ def count_table_plots(count_table,
     # Plot legend (Pc colors)
     plt.legend(title="Promoter (Pc)", bbox_to_anchor=(1.05, 1), loc="upper left")
     plt.tight_layout() # Size adjustment
-    plt.show()
+    # Saves the plot
+    plt.savefig(os.path.join(outdir, filename))
+    plt.close()
     return
 
 # -------- Main code
