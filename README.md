@@ -8,6 +8,7 @@ The repository is organised in **two main blocks**:
 2. [General pipeline](#2-general-pipeline-pc-classification): runs the end-to-end workflow and classifies Pc variants using BLASTn.
 
 ---
+
 ## 0. Before starting
 
 ###  Installation
@@ -90,28 +91,36 @@ Overview of how the `methods_comparison` block works:
 
 ![General workflow](./images/general_workflow.png)
 
-*All diagrams in this README were created with [Mermaid](https://github.com/mermaid-js/mermaid).*
+*Diagram created with [Mermaid](https://github.com/mermaid-js/mermaid).*
 
 ### 1.4 Internal workflow
+
+Genomes are downloaded in parallel using [NCBI Datasets](https://github.com/ncbi/datasets); the parallelisation happens at the `rehydrate` step.
 
 #### BLASTn
 
 Before running the searches, a BLAST database must be built from the genomes to be screened. 
-A minimum hit length is applied so that the BLASTn definition of a hit is as close as possible to the one used by IF2 and `integron-filtering`, which makes the three methods comparable.
+A minimum hit length is applied (can be modified) so that the BLASTn definition of a hit is as close as possible to the one used by IF2 and `integron-filtering`, which makes the three methods comparable.
 
-<!-- TODO: hacer el diagrama de funciones con blastn -->
+The workflow is as follows:
+
+![BLASTn workflow](./images/blastn_workflow_v2.png)
+
 #### IntegronFinder2 + integron-filtering
 
-<!-- TODO: explicar todo lo de IF2 y integron-filtering -->
-integron-filtering solo usamos el attC-screening.sh 
 
-sin bbdd, se listan los fasta files, si da + para integron filtering --> pasa a IF2, sino nada
+[IntegronFinder2](https://github.com/gem-pasteur/Integron_Finder) (IF2) detects integrons in bacterial genomes by combining the search for integrase genes (*intI*, using HMM profiles) with the search for *attC* recombination sites (using covariance models). It reports:
+- complete integrons (integrase + *attC* sites)
+- In0 elements (integrase without *attC* sites)
+- CALIN elements (clusters of *attC* sites without an integrase).
 
-[IF2](https://github.com/gem-pasteur/Integron_Finder)  
+The prior filtering step from [integron-filtering](https://github.com/timghaly/integron-filtering) is also used (only [attC-screening.sh](./scripts/pipeline/T3_integronfiltering/attC-screening.sh)). 
 
-*** explicar aquí un poco IF2 y el workflow en general
-<!-- TODO: hacer el diagrama de funciones con IF2 e integron-filtering -->
+For both IF2 and `integron-filtering`, the downloaded genome files must be used as they are, without creating a database.
 
+The workflow is as follows:
+
+![integron-filtering and IntegronFinder2 workflow](./images/IF2+intfilt_workflow.png)
 
 ### 1.5 Plotting results
 
@@ -128,25 +137,46 @@ Five final plots are generated.
 - Total hits and unique hits (number of distinct genomes with a hit): `method_comparison.png`
 - Overlap between the sets of genomes with at least one hit: `hits_overlap.png`
 
+
 ### 1.6 Analyze results
 
-Se ha generado un [script](./scripts/additional/analyze_methodscomparison.py) para analizar  los genomas discordantes.
+The definition of a hit differs between methods:
+
+- **IF2**: a hit is any genome where an integron element is detected (integrase, CALIN, etc.).
+- **BLASTn**: a hit is any match with *intI1* whose length exceeds a minimum number of base pairs (700 bp by default, the *intI1* sequence is 1014 bp long).
+
+To normalise the results, **unique hits** are also reported (the number of genomes with at least one hit in each method).
+
+To better understand the results, the discordant genomes (those where the methods disagree) can be analysed with [this script](./scripts/additional/analyze_methodscomparison.py), which generates a `.csv` file with the information on the non-matching hits.
 
 ---
 
-## 2. General pipeline: Pc classification
+## 2. General pipeline: Pc integron classification
 
 This block is the general workflow. It performs the **classification of Pc promoter variants using BLAST**.
-# FALTA TODA ESTA PARTE 
+
+The general workflow classifies the Pc of the integrons it detects. The initial part is the same as in the previous block: genomes are downloaded in parallel and screened with BLASTn.
+
+For positive genomes, the Pc is analysed and classified into the variants described in the [literature](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1000793).
+
+For variants not previously described, the integrase sequence is also extracted, along with any metadata of interest (the selected metadata can be modified).
+
+The workflow is as follows:
+
+![General workflow](./images/general_workflow_detailed.png)
+
+### 2.1 Analyze results
+
+The [`analyze_general.py`](./scripts/additional/analyze_general.py) script generates plots and allows the data to be explored.
+
+Results can be grouped by species or by Pc variant, generating plots such as `pc_variants_by_species.png`.
+
+A `.csv` file (`final.csv`) is also produced with detailed information on each hit, including any metadata selected for the analysis.
 
 ---
 
 ## 3. Analisis de la bbdd Integrall
 
-Además, se analizan los datos correspondientes a la bbdd Integrall mediatne el [script](./scripts/T1_Integrall_Pc_abudance.py), obteniendo [resultados](./results/Integrall_analysis) sobre la abundancia relativa de las ESKAPEE en esta bbdd.
+The data from the [Integrall database](https://bio.tools/integrall) are also analysed with [this script](./scripts/T1_Integrall_Pc_abudance.py), producing [results](./results/Integrall_analysis) on the relative abundance of the ESKAPEE pathogens in this database.
 
 
-
-PENDIENTE:
-
-- GUARDAR LOS PLOTS DE INTEGRALL E
