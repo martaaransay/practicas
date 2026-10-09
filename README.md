@@ -175,8 +175,14 @@ A `.csv` file (`final.csv`) is also produced with detailed information on each h
 
 ---
 
-## 3. Analisis de la bbdd Integrall
+## 3. Integrall database analysis
 
 The data from the [Integrall database](https://bio.tools/integrall) are also analysed with [this script](./scripts/T1_Integrall_Pc_abudance.py), producing [results](./results/Integrall_analysis) on the relative abundance of the ESKAPEE pathogens in this database.
 
 
+PENDIENTE PRÁCTICAS:
+
+- MEMORIA
+- general workflow pipeline diagrama
+- ¿documentación?
+- pasar el primer workflow de mermaid a libreoffice
