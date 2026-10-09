@@ -52,7 +52,7 @@ if __name__ == "__main__":
                      "assembly_level": "assemblyInfo.assemblyLevel"}
     
     result, t = run_blastn(query = query_file, 
-                           output = f"../results_practicas/final/{str(n_genomes)}genomes/blast/blast.tsv",
+                           output = f"../results/final/{str(n_genomes)}genomes/blast/blast.tsv",
                            db = f"../data_practicas/{str(n_genomes)}genomes/db/db",
                            max_target = len(contig_to_genome(genomes_dir))) # max num of seqs to keep: - mapping length
 
@@ -79,6 +79,6 @@ if __name__ == "__main__":
         for col in extra_columns.keys(): # Add extra cols
             row_info[col] = hit[col]
 
-        info_to_csv(row_info, f"../results_practicas/final/{str(n_genomes)}genomes/final.csv")
+        info_to_csv(row_info, f"../results/final/{str(n_genomes)}genomes/final.csv")
 
 
