@@ -91,8 +91,6 @@ Overview of how the `methods_comparison` block works:
 
 ![General workflow](./images/general_workflow.png)
 
-*Diagram created with [Mermaid](https://github.com/mermaid-js/mermaid).*
-
 ### 1.4 Internal workflow
 
 Genomes are downloaded in parallel using [NCBI Datasets](https://github.com/ncbi/datasets); the parallelisation happens at the `rehydrate` step.
@@ -186,3 +184,5 @@ PENDIENTE PRÁCTICAS:
 - general workflow pipeline diagrama
 - ¿documentación?
 - pasar el primer workflow de mermaid a libreoffice
+- cambair igual la definición de hit de IF2 y quitar lo que sea CALIN
+- revisar que funcione bien la parte de rehyudrating con try?
