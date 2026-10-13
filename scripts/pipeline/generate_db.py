@@ -11,7 +11,7 @@ from pipeline.useful_funct import unique_genome_files
 
 # --------Definition of functions
 #------------------------ Function to download genomes for specific species
-def download_species_genomes(species, outdir, target_num, flags):
+def download_species_genomes(species, outdir, flags, target_num = None):
     """
     Uses the download_genomes function to download genomes for each species in the species dictionary.
     
@@ -19,8 +19,9 @@ def download_species_genomes(species, outdir, target_num, flags):
     ------
     species (dict): A dictionary where keys are short names and values are long names of species.
     outdir (str): The output directory where genomes will be downloaded.
-    target_num (int): The target number of genomes to download for each species.
     flags (dict): Flags for the genome download.
+    target_num (int): The target number of genomes to download for each species.
+                      Default to None.
 
     Returns
     -------
@@ -34,13 +35,20 @@ def download_species_genomes(species, outdir, target_num, flags):
         # Generates the path to save the genomes
         path = os.path.join(outdir, short_name, f"{short_name}.zip")
         # Executes download function
-        dir = download_genomes(source = "taxon",
-                        name = long_name, # Species to download
-                        quality_filter_flag = True,
-                        filename = path,
-                        flags = flags,
-                        target_num = target_num # number of genomes to download
-                        )
+        if target_num:
+            dir = download_genomes(source = "taxon",
+                            name = long_name, # Species to download
+                            quality_filter_flag = True,
+                            filename = path,
+                            flags = flags,
+                            target_num = target_num # number of genomes to download
+            )
+        else:
+            dir = download_genomes(source = "taxon",
+                            name = long_name, # Species to download
+                            quality_filter_flag = True,
+                            filename = path,
+                            flags = flags)
         dirs[short_name] = dir
 
     return dirs

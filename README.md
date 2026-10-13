@@ -106,7 +106,6 @@ The workflow is as follows:
 
 #### IntegronFinder2 + integron-filtering
 
-
 [IntegronFinder2](https://github.com/gem-pasteur/Integron_Finder) (IF2) detects integrons in bacterial genomes by combining the search for integrase genes (*intI*, using HMM profiles) with the search for *attC* recombination sites (using covariance models). It reports:
 - complete integrons (integrase + *attC* sites)
 - In0 elements (integrase without *attC* sites)
@@ -114,7 +113,7 @@ The workflow is as follows:
 
 The prior filtering step from [integron-filtering](https://github.com/timghaly/integron-filtering) is also used (only [attC-screening.sh](./scripts/pipeline/T3_integronfiltering/attC-screening.sh)). 
 
-For both IF2 and `integron-filtering`, the downloaded genome files must be used as they are, without creating a database.
+For both IF2 and `integron-filtering`, the downloaded genome files must be without creating a database.
 
 The workflow is as follows:
 
@@ -140,7 +139,7 @@ Five final plots are generated.
 
 The definition of a hit differs between methods:
 
-- **IF2**: a hit is any genome where an integron element is detected (integrase, CALIN, etc.).
+- **IF2**: a hit is any genome where an integron element is detected NOT including CALINs(hit without integrase). 
 - **BLASTn**: a hit is any match with *intI1* whose length exceeds a minimum number of base pairs (700 bp by default, the *intI1* sequence is 1014 bp long).
 
 To normalise the results, **unique hits** are also reported (the number of genomes with at least one hit in each method).
@@ -185,4 +184,3 @@ PENDIENTE PRÁCTICAS:
 - ¿documentación?
 - pasar el primer workflow de mermaid a libreoffice
 - cambair igual la definición de hit de IF2 y quitar lo que sea CALIN
-- revisar que funcione bien la parte de rehyudrating con try?

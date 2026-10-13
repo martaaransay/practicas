@@ -91,6 +91,9 @@ def processing(directory, n_split = 100,
     
     # Path to the new fetch file (with the current lines to rehydrate)
     current_fetch_file = os.path.join(fetch_directory, "fetch.txt")
+    # Path to a failed file (with the lines that have falied)
+    failed_file = os.path.join(fetch_directory, "failed.txt")
+
     # Command to execute datasets rehydrate
     rehydrate_cmd = ["datasets", "rehydrate", 
                      "--directory", directory, # Directory to store genomes
@@ -104,21 +107,32 @@ def processing(directory, n_split = 100,
         # Writes the current lines into the current fetch file
         with open(current_fetch_file, "w") as f:
             f.writelines(splitted)
-
+        
+        success = False # Flag to check succession
         # Control to avoid rehydrate errors: In case of error, tries again the rehydratation
         for n in range(1, n_tries + 1):
             try:
                 print("Rehydrating...")
                 subprocess.run(rehydrate_cmd, 
                                check=True, capture_output=True, text=True)
+                success = True
                 break
             except subprocess.CalledProcessError as e:
                 print(f"Error executing datasets rehydrate:\n{e.stderr}.\nNumber of try: {n}.")       
-                if n == n_tries:
-                    return False
+                
+        if not success: 
+            with open(failed_file, "a") as f:
+                f.writelines(splitted)
+        
         # Writes the rest of the lines into the recovery file
         with open(recovery_file, "w") as f:
             f.writelines(recovery)
+        
+    # If there were failed splits, writes them into the failed file to continue the execution
+    print(">>>>>>>>>>>>>>WARNING: FAILED SPLITS IN THE REHYDRATATION PROCCESS")
+    if os.path.isfile(failed_file):
+        os.replace(failed_file, recovery_file)
+        return False    
     return True
 
 #------------------------ Function to process several datasets rehydrate 

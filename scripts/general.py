@@ -8,43 +8,44 @@ from pipeline.analyze_Pc import classify_pc_regex, info_to_csv
 
 
 if __name__ == "__main__":
-    n_genomes = 1500
+    n_genomes = 100000
     
     db_created = False
     if not db_created:
         flags = datasets_flags(assembly_level="complete,chromosome,contig",
-                            exclude_atypical=True,
-                            mag=False)
+                               exclude_atypical=True,
+                               mag=False)
     
         # species to download
-        names = {"Ecoli" : "Escherichia coli", 
-                "Klebsiella" : "Klebsiella pneumoniae",
-                "Pseudomonas" : "Pseudomonas aeruginosa",
-                "Acinetobacter" : "Acinetobacter baumannii",
-                "Enterobacter" : "Enterobacter"}
-
+        # names = {"Ecoli" : "Escherichia coli", 
+        #         "Klebsiella" : "Klebsiella pneumoniae",
+        #         "Pseudomonas" : "Pseudomonas aeruginosa",
+        #         "Acinetobacter" : "Acinetobacter baumannii",
+        #         "Enterobacter" : "Enterobacter"}
+        
+        ecoli = {"Ecoli" : "Escherichia coli"}
         ## For downloading normal genomes --> download_genomes() directly
-            
-        dirs = download_species_genomes(species = names, 
-                                    outdir = f"../data_practicas/{str(n_genomes)}genomes", 
-                                    target_num = n_genomes, 
-                                    flags = flags)
+        genomes_dir = f"../data_practicas/Ecoli_complete"
+        dirs = download_species_genomes(species = ecoli, 
+                                        outdir = genomes_dir, 
+                                        flags = flags,
+                                        target_num = n_genomes)
+        
         failed = process_all(dirs, total_workers=30, n_split=500)
         if failed: 
             print(f"Failed to rehydrate: {failed}")
             exit(0)
 
-    multifasta_path = f"../data_practicas/{str(n_genomes)}genomes/multifasta_genomes.fasta"
+    multifasta_path = f"../data_practicas/Ecoli_complete/multifasta_genomes.fasta"
        
-    generate_multifasta(path_to_genomes = f"../data_practicas/{str(n_genomes)}genomes/*/*/ncbi_dataset/data/*/*.fna",
+    generate_multifasta(path_to_genomes = f"../data_practicas/Ecoli_complete/*/*/ncbi_dataset/data/*/*.fna",
                         outfile = multifasta_path)
     generate_db(multifasta = multifasta_path,
-                        out_db = f"../data_practicas/{str(n_genomes)}genomes/db/db")
+                        out_db = f"../data_practicas/Ecoli_complete/db/db")
 
     
     query_file = "data_practicas/Int1/Int1_Pc_pattern.fa"
-    multifasta_path = f"../data_practicas/{str(n_genomes)}genomes/multifasta_genomes.fasta"
-    genomes_dir = f"../data_practicas/{n_genomes}genomes"
+
 
     extra_columns = {"bioproject": "assemblyInfo.bioprojectLineage.bioprojects.accession",
                      "biosample": "assemblyInfo.biosample.accession",
@@ -52,12 +53,12 @@ if __name__ == "__main__":
                      "assembly_level": "assemblyInfo.assemblyLevel"}
     
     result, t = run_blastn(query = query_file, 
-                           output = f"../results/final/{str(n_genomes)}genomes/blast/blast.tsv",
-                           db = f"../data_practicas/{str(n_genomes)}genomes/db/db",
+                           output = f"../results/final/Ecoli_complete/blast/blast.tsv",
+                           db = f"../data_practicas/Ecoli_complete/db/db",
                            max_target = len(contig_to_genome(genomes_dir))) # max num of seqs to keep: - mapping length
 
     hits_df = process_hits(result,
-                           dir_genomes = f"../data_practicas/{n_genomes}genomes",
+                           dir_genomes = f"../data_practicas/Ecoli_complete",
                            multifasta = multifasta_path,
                            min_length = 1000,
                            extra_columns = extra_columns)
@@ -79,6 +80,6 @@ if __name__ == "__main__":
         for col in extra_columns.keys(): # Add extra cols
             row_info[col] = hit[col]
 
-        info_to_csv(row_info, f"../results/final/{str(n_genomes)}genomes/final.csv")
+        info_to_csv(row_info, f"../results/final/Ecoli_complete/final.csv")
 
 
