@@ -8,6 +8,12 @@ from pipeline.blastn import process_blast_tsv
 from pipeline.useful_funct import contig_to_genome, genome_key
 from pipeline.analyze_Pc import extract_integron_info_gbk
 
+
+#########################################################################
+# To execute correctly this script, use this line for running:
+# PYTHONPATH=scripts python scripts/additional/analyze_methodscomparison.py
+#########################################################################
+
 # -------- Paths with results to analyze
 n = 500 # Number of genomes per species
 genomes_dir = f"../data_practicas/{n}genomes"

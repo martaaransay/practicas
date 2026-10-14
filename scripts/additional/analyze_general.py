@@ -1,6 +1,11 @@
 # Import functions from the pipeline module
 from plot.plotting import plot_pc_by_species
 
+#########################################################################
+# To execute correctly this script, use this line for running:
+# PYTHONPATH=scripts python scripts/additional/analyze_general.py
+#########################################################################
+
 n_genomes = 1500 # Number of genomes per species
 # csv with info
 path = f"../results/final/{n_genomes}genomes/final.csv"
