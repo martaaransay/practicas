@@ -180,7 +180,3 @@ The data from the [Integrall database](https://bio.tools/integrall) are also ana
 PENDIENTE PRÁCTICAS:
 
 - MEMORIA
-- general workflow pipeline diagrama
-- ¿documentación?
-- pasar el primer workflow de mermaid a libreoffice
-- cambair igual la definición de hit de IF2 y quitar lo que sea CALIN
