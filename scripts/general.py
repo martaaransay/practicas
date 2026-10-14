@@ -8,7 +8,7 @@ from pipeline.analyze_Pc import classify_pc_regex, info_to_csv
 
 
 if __name__ == "__main__":
-    n_genomes = 100000
+    n_genomes = 10000
     
     db_created = False
     if not db_created:

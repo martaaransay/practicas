@@ -129,11 +129,12 @@ def processing(directory, n_split = 100,
             f.writelines(recovery)
         
     # If there were failed splits, writes them into the failed file to continue the execution
-    print(">>>>>>>>>>>>>>WARNING: FAILED SPLITS IN THE REHYDRATATION PROCCESS")
     if os.path.isfile(failed_file):
+        print(f">>> WARNING: failed splits in {directory}")
         os.replace(failed_file, recovery_file)
-        return False    
-    return True
+        return False
+    return True 
+
 
 #------------------------ Function to process several datasets rehydrate 
 def process_all(dirs, total_workers = 18, 
