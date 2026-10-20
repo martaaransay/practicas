@@ -114,6 +114,7 @@ def run_method(idx_analysis, parent_results_dir, list_files, cpu):
 
     start = time.time() # Start time
     hits, failed = {}, [] # To control errors in the IF2 execution
+    integron_info = [] # To store info of all the integrons detected by IF2 (complete, In0, CALIN)
 
     for each_file in list_files: # Iterates over the files
         # Accession of the genome
@@ -150,8 +151,12 @@ def run_method(idx_analysis, parent_results_dir, list_files, cpu):
 
         # Adds the number of integrons detected by IF2 into hits dict
         info = extract_integron_info_gbk(original_acc, gbk_files)
+        # Stores the info of every integron, adding the genome accession
         n_integrases = 0
         for i in info:
+            i["genome"] = original_acc
+            integron_info.append(i)
+        
             if not i["calin"]:
                 n_integrases += 1
         hits[original_acc] = n_integrases
@@ -168,6 +173,7 @@ def run_method(idx_analysis, parent_results_dir, list_files, cpu):
                "general_hits": sum(hits.values()),
                "unique_genomes": unique_genomes,
                "unique_hits": len(unique_genomes),
+               "info": integron_info,
                "time": time.time() - start}
     
     return results
@@ -176,8 +182,9 @@ def run_method(idx_analysis, parent_results_dir, list_files, cpu):
 if __name__ == "__main__":
     ### 0) Creating the database with genomes:
 
-    num_genomes_each = 20 # Number of genomes of each specie in the database
+    num_genomes_each = 1 # Number of genomes of each specie in the database
     flag_db_created = False
+
     if not flag_db_created:
 
         flags = datasets_flags(assembly_level = "complete,chromosome,contig",
@@ -185,10 +192,11 @@ if __name__ == "__main__":
                                mag = False)
         # species to download
         names = {"Ecoli" : "Escherichia coli", 
-                "Klebsiella" : "Klebsiella pneumoniae",
+                "Klebsiella" : "Klebsiella pneumoniae"}
+        """,
                 "Pseudomonas" : "Pseudomonas aeruginosa",
                 "Acinetobacter" : "Acinetobacter baumannii",
-                "Enterobacter" : "Enterobacter"}
+                "Enterobacter" : "Enterobacter"}"""
 
         ## For downloading normal genomes --> download_genomes() directly
         
@@ -235,7 +243,7 @@ if __name__ == "__main__":
 
         # Blastn
         each_result, each_time = run_blastn(query = each_query, 
-                                            output = f"../results_practicas/{str(num_genomes_each)}genomes/700min_length/blast/blast_{name}.tsv",
+                                            output = f"../results_practicas/{str(num_genomes_each)}genomes/blast/blast_{name}.tsv",
                                             db = f"../data_practicas/{str(num_genomes_each)}genomes/db/db",
                                             # max num of seqs to keep is the mapping length
                                             max_target = len(mapping)) 
@@ -244,39 +252,11 @@ if __name__ == "__main__":
         all_results[each_query] = each_result
         all_times[each_query] = each_time
 
-    dfs, evalues, bitscore, labels = process_tsv2compare(all_results) # Process tsv files
-
-    # Plotting blastn results
-    outdir = f"results/plots/{str(num_genomes_each)}genomes/700min_length"
-    general_title = f"- db: {str(num_genomes_each)} genomes * 5 species ({str(num_genomes_each*5)})"
-
-    plot_evalue(evalues, labels, 
-                title = f"E-Values distribution {general_title}", outdir = outdir)
-    plot_bitscore(bitscore, labels, 
-                  title = f"BitScore distribution {general_title}", outdir = outdir)
-    plot_evalue_thresholds(dfs, all_times, 
-                           title = f"E-Values thresholds {general_title}", outdir = outdir)
-
-    # Store the blastn result of a unique query to compare with other methods
+    # Query used to compare blastn with the other methods
     chosen_query = "data/Int1/Int1_Pc_pattern.fa"
-    blast_df = dfs[chosen_query]
-    blast_general_hits = len(blast_df)
-    contigs = blast_df["seq_id"].unique()
-
     
-    # Set to store blast results  
-    set_blast = set()
-    for each_contig in contigs: # Iterates over contigs
-        if each_contig in mapping: # Checks if the contig is in the mapping dictionary
-            # If the contig is correct, stores in the set its genome accession
-            acc = genome_key(mapping[each_contig])
-            set_blast.add(acc)
-
-    blast_unique_hits = len(set_blast) # Unique genomes
-    t_blast = all_times[chosen_query] # Time of the selected query
-
     ############################## 2) IntegronFinder2 and 3) Integron-filtering + IntegronFinder2
-
+    
     # List fasta files with 5 levels of depth using the root directory
     all_files = list_fasta_files(genomes_dir, depth = 5)
 
@@ -286,7 +266,7 @@ if __name__ == "__main__":
     # Divides the cores between methods
     cpu_each = max(1, os.cpu_count() // 2) 
 
-    parent_results_dir = f"../results_practicas/{str(num_genomes_each)}genomes/700min_length"
+    parent_results_dir = f"../results_practicas/{str(num_genomes_each)}genomes"
 
     with ThreadPoolExecutor(max_workers=2) as executor:
         # Usage --> run_method(idx_analysis, parent_results_dir, list_files, cpu)
@@ -324,45 +304,128 @@ if __name__ == "__main__":
         set_IntIF2.add(IntIF2_acc)
     # Unique hits from normalized sets
     IntIF2_unique_hits = len(set_IntIF2)
-    # Dictionary to store the results of the three methods
-    hits_summary = {"BLAST": (blast_general_hits, blast_unique_hits),
-                    "IntegronFinder2": (IF2_general_hits, IF2_unique_hits),
-                    "Integron-filtering+IF2": (IntIF2_general_hits, IntIF2_unique_hits)}
+
+    ############################## Outputs for each BLAST min_length run
+
+    outdir = f"results/plots/{str(num_genomes_each)}genomes"
+    general_title = f"- db: {str(num_genomes_each)} genomes * 5 species ({str(num_genomes_each*5)})"
+
+    # Store the info of all the integrons detected (independent of BLAST min_length)
+    info_outdir = f"{outdir}/results_files"
+    os.makedirs(info_outdir, exist_ok=True)
+
+    # Store the info of all the integrons detected by IF2 in both runs
+    ### only IF2:
+    df_info_IF2 = pd.DataFrame(res_IF2["info"])
+    df_info_IF2.to_csv(f"{info_outdir}/integrons_info_IF2.csv", index=False)
+    ### integron-filtering + IF2:
+    df_info_IntIF2 = pd.DataFrame(res_IntIF2["info"])
+    df_info_IntIF2.to_csv(f"{info_outdir}/integrons_info_IntFilt+IF2.csv", index=False)
+
+    # Genomes analyzed 
+    all_accs = sorted(unique_files.keys())
+    paths = []
+    for each_acc in all_accs:
+        paths.append(unique_files[each_acc])
+    df_genomes = pd.DataFrame({"genome": all_accs,
+                               "path": paths})
     
-    times = {"BLAST": t_blast,
-             "IntegronFinder2": t_IF2,
-             "Integron-filtering+IF2": t_IntIF2}
-    
-    # Plotting methods comparison
-    plot_hits_comparison(hits_summary, times,
-                         title = f"Method comparison {general_title}", 
-                         outdir = outdir)
+    summary_rows = []
 
-    # Creates sets dictionary
-    sets_dict = {"BLAST": set_blast,
-                 "IntegronFinder2": set_IF2,
-                 "Integron-filtering+IF2": set_IntIF2}
+    # Process BLASTn results using a list of tuples:
+    # (min_length, directory, title)
+    lenght_variants = [(0, outdir, ""),
+                       (700, f"{outdir}/700min_length", " - BLAST min_length 700 bp"),
+                       (1000, f"{outdir}/1000min_length", " - BLAST min_length 1000 bp")]
 
-    # Plotting overlapping genomes
-    plot_hits_overlap(sets_dict, 
-                      title = f"Method comparison {general_title}", 
-                      outdir = outdir)
+    for min_len, results_dir, extra_title in lenght_variants:
+        blast_tag = f"min{min_len}"
 
-    #### To store plotted results:
+        dfs, evalues, bitscore, labels = process_tsv2compare(all_results,
+                                                             min_length = min_len) # Process tsv files
 
-    # 1) number of hits per genome
-    # BLAST: 
-    blast_counts = {} # For saving the number of hits per genome
-    for each_contig in blast_df["seq_id"]: # Iterates over contigs
-        if each_contig in mapping: # for each contig, gets the genome accession
-            acc = genome_key(mapping[each_contig])
-            # Adds 1 to the number of hits for that accession
-            if acc in blast_counts.keys():
-                blast_counts[acc] += 1
-            else: # If is not in the dict, initializes at 0
-                blast_counts[acc] = 1
+        os.makedirs(results_dir, exist_ok=True)
+        
+        # Plotting blastn results
 
-    # IF2 and IntFilt+IF2:
+        plot_evalue(evalues, labels, 
+                    title = f"E-Values distribution {general_title}{extra_title}", 
+                    outdir = results_dir)
+        plot_bitscore(bitscore, labels, 
+                      title = f"BitScore distribution {general_title}{extra_title}", 
+                      outdir = results_dir)
+        plot_evalue_thresholds(dfs, all_times, 
+                               title = f"E-Values thresholds {general_title}{extra_title}", 
+                               outdir = results_dir)
+
+        # Store the blastn result of a unique query to compare with other methods
+        
+        blast_df = dfs[chosen_query]
+        blast_general_hits = len(blast_df)
+        contigs = blast_df["seq_id"].unique()
+        
+        # Set to store blast results  
+        set_blast = set()
+        for each_contig in contigs: # Iterates over contigs
+            if each_contig in mapping: # Checks if the contig is in the mapping dictionary
+                # If the contig is correct, stores in the set its genome accession
+                acc = genome_key(mapping[each_contig])
+                set_blast.add(acc)
+
+        blast_unique_hits = len(set_blast) # Unique genomes
+        t_blast = all_times[chosen_query] # Time of the selected query
+
+        # Dictionary to store the results of the three methods
+        hits_summary = {"BLAST": (blast_general_hits, blast_unique_hits),
+                        "IntegronFinder2": (IF2_general_hits, IF2_unique_hits),
+                        "Integron-filtering+IF2": (IntIF2_general_hits, IntIF2_unique_hits)}
+        
+        times = {"BLAST": t_blast,
+                "IntegronFinder2": t_IF2,
+                "Integron-filtering+IF2": t_IntIF2}
+            
+        # Plotting methods comparison
+        plot_hits_comparison(hits_summary, times,
+                             title = f"Method comparison {general_title}{extra_title}", 
+                             outdir = results_dir)
+
+        # Creates sets dictionary
+        sets_dict = {"BLAST": set_blast,
+                    "IntegronFinder2": set_IF2,
+                    "Integron-filtering+IF2": set_IntIF2}
+
+        # Plotting overlapping genomes
+        plot_hits_overlap(sets_dict, 
+                          title = f"Method comparison {general_title}{extra_title}", 
+                          outdir = results_dir)
+
+        #### To store plotted results:
+
+        # 1) number of hits per genome
+        # BLAST: 
+        blast_counts = {} # For saving the number of hits per genome
+        for each_contig in blast_df["seq_id"]: # Iterates over contigs
+            if each_contig in mapping: # for each contig, gets the genome accession
+                acc = genome_key(mapping[each_contig])
+                # Adds 1 to the number of hits for that accession
+                if acc in blast_counts.keys():
+                    blast_counts[acc] += 1
+                else: # If is not in the dict, initializes at 0
+                    blast_counts[acc] = 1
+        blast_hits = []
+        for each_acc in all_accs:
+            blast_hits.append(blast_counts.get(each_acc, 0))
+        
+        df_genomes[f"BLAST_{blast_tag}_hits"] = blast_hits
+        df_genomes[f"in_BLAST_{blast_tag}"] = df_genomes[f"BLAST_{blast_tag}_hits"] > 0
+
+
+        summary_rows.append({"method": f"BLAST_{blast_tag}",
+                            "general_hits": blast_general_hits,
+                            "unique_hits": blast_unique_hits,
+                            "time_s": t_blast})
+
+    # IF2 and IntFilt+IF2
     IF2_counts = {}
     for hit, num_hits in res_IF2["hits"].items():
         acc = genome_key(hit)
@@ -378,48 +441,37 @@ if __name__ == "__main__":
             IntIF2_counts[acc] += num_hits
         else:
             IntIF2_counts[acc] = num_hits
-    
-    all_accs = sorted(unique_files.keys()) # Storing all the genomes analyzed 
+            # Adds the BLAST columns of this variant to the genomes df
 
-    paths_genomes = []
-    blast_hits = []
     IF2_hits = []
     IntIF2_hits = []
-    for each_acc in all_accs: 
-        paths_genomes.append(unique_files[each_acc])
-        blast_hits.append(blast_counts.get(each_acc, 0))
+    for each_acc in all_accs:
         IF2_hits.append(IF2_counts.get(each_acc, 0))
         IntIF2_hits.append(IntIF2_counts.get(each_acc, 0))
-
-    # Df with all the information of the genomes analyzed
-    df_genomes = pd.DataFrame({
-        "genome": all_accs,
-        "path": paths_genomes,
-        "BLAST_hits": blast_hits,
-        "IF2_hits": IF2_hits,
-        "IntFilt_IF2_hits": IntIF2_hits,
-    })
-    
-    # 2) unique hits
-    # Appends to the df_genomes the information of whether each genome has hits in each method
-    df_genomes["in_BLAST"] = df_genomes["BLAST_hits"] > 0
+        
+    df_genomes["IF2_hits"] = IF2_hits
     df_genomes["in_IF2"] = df_genomes["IF2_hits"] > 0
+    df_genomes["IntFilt_IF2_hits"] = IntIF2_hits
     df_genomes["in_IntFilt_IF2"] = df_genomes["IntFilt_IF2_hits"] > 0
 
-    # Saves the information into a csv file
-    df_genomes.to_csv(f"{outdir}/genomes_hits.csv", index=False)
 
-    # 3) Summary of the comparison
-    rows = []
-    # Stores each method, the number of general hits, unique hits, and time of execution in a list of dictionaries
-    for method, value in hits_summary.items():
-        rows.append({
-            "method": method,
-            "general_hits": value[0],
-            "unique_hits": value[1],
-            "time_s": times[method],
-        })
+    # Appends to the df_genomes the information of whether each genome has hits in each method
+    df_genomes.to_csv(f"{info_outdir}/genomes_hits.csv", index=False)
 
-    df_summary = pd.DataFrame(rows) # Convert the list of dict into a pd.df
+    # summary
+    # BLAST
+
+    # IF2
+    summary_rows.append({"method": "IntegronFinder2",
+                        "general_hits": IF2_general_hits,
+                        "unique_hits": IF2_unique_hits,
+                        "time_s": t_IF2})
+    # intfilt + IF2
+    summary_rows.append({"method": "Integron-filtering+IF2",
+                        "general_hits": IntIF2_general_hits,
+                        "unique_hits": IntIF2_unique_hits,
+                        "time_s": t_IntIF2})
+    
+    df_summary = pd.DataFrame(summary_rows) # Convert the list of dict into a pd.df
     # Saves the information into a csv file
-    df_summary.to_csv(f"{outdir}/methods_summary.csv", index=False)
+    df_summary.to_csv(f"{info_outdir}/methods_summary.csv", index=False)
