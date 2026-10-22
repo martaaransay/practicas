@@ -109,7 +109,8 @@ def count_table_plots(count_table,
     """
     Generates and displays two side-by-side bar plots: 
     - one for general relative Pc abundance 
-    - one for stacked Pc distribution within ESKAPEE species.
+    - one for stacked Pc distribution within ESKAPEE species, with the Pc
+      ordered by abundance.
 
     Args
     ------
@@ -121,9 +122,15 @@ def count_table_plots(count_table,
     # Plots of both counts
 
     # Colors for the Pcs:
-    colors = ["#A7A8A7", "#B3924F", "#984FB3", "#AAAA00", "#FF5733", 
-               "#FF8D1A", "#FFE400", "#FF96E8", "#96FFE5", "#4F80B3" ]
-
+    colors = ["#4F80B3", "#AAAA00", "#984FB3", "#FF5733", "#FFE400", 
+              "#FF8D1A", "#A7A8A7", "#B3924F", "#FF96E8", "#96FFE5"]
+    
+    pc_names = count_table.drop(columns=["Total"]).columns
+    # Fixed color for each Pc by name
+    pc_colors = {}
+    for idx in range(len(pc_names)): # Iterates over pc variants, and assigns a color
+        pc_colors[pc_names[idx]] = colors[idx]
+    
     # Size of the plot
     plt.figure(figsize=(10, 6))
 
@@ -135,34 +142,49 @@ def count_table_plots(count_table,
     # New df with the general abundance of Pc 
     df_total = df_plot.sum(axis=1) 
 
+    # Colors of the bars, in the same order as the Pc of df_total
+    colors_total = []
+    for pc in df_total.index:
+        colors_total.append(pc_colors[pc])
+    
     # Bar chart with the defined colors 
-    df_total.plot(kind="bar", color=colors, edgecolor="black")
+    df_total.plot(kind = "bar", 
+                  color = colors_total, 
+                  edgecolor = "black")
 
     # Labels
-    plt.title(title[0], fontweight="bold")
-    plt.xlabel("Pc", fontweight="bold")
-    plt.ylabel("Count", fontweight="bold")
-    plt.xticks(rotation=45, ha="right")
+    plt.title(title[0], fontweight = "bold")
+    plt.xlabel("Pc", fontweight = "bold")
+    plt.ylabel("Count", fontweight = "bold")
+    plt.xticks(rotation = 45, ha = "right")
 
     # Plot 2: ESKAPEE Species
     plt.subplot(1, 2, 2)
     
     # ESKAPEE species filter and Total column removal 
     df_plot_eskapee = eskapee_count_table.loc[eskapee].drop(columns=["Total"]) 
+    
+    # Order the Pc by total abundance
+    order = df_plot_eskapee.sum().sort_values(ascending=False).index
+    df_plot_eskapee = df_plot_eskapee[order]
 
     df_plot_eskapee.plot(kind = "bar", 
                          ax = plt.gca(), # To avoid generating two plots
                          stacked = True, # Stacked bars
-                         color = colors, 
+                         color = colors_total, 
                          edgecolor = "black")
 
-    plt.title(title[1], fontweight="bold")
-    plt.xlabel("ESKAPEE Species", fontweight="bold")
-    plt.ylabel("Count", fontweight="bold")
-    plt.xticks(rotation=45, ha="right")
-   
+    plt.title(title[1], fontweight = "bold")
+    plt.xlabel("ESKAPEE Species", fontweight = "bold")
+    plt.ylabel("Count", fontweight = "bold")
+    plt.xticks(rotation = 45, ha = "right")
+
+    # Legend in the same order as the stack (most abundant at the bottom)
+    handles, labels = plt.gca().get_legend_handles_labels()
+    
     # Plot legend (Pc colors)
-    plt.legend(title="Promoter (Pc)", bbox_to_anchor=(1.05, 1), loc="upper left")
+    plt.legend(handles[::-1], labels[::-1], 
+               title = "Promoter (Pc)", bbox_to_anchor = (1.05, 1), loc = "upper left")
     plt.tight_layout() # Size adjustment
     # Saves the plot
     plt.savefig(os.path.join(outdir, filename))
