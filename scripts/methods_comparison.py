@@ -182,7 +182,7 @@ def run_method(idx_analysis, parent_results_dir, list_files, cpu):
 if __name__ == "__main__":
     ### 0) Creating the database with genomes:
 
-    num_genomes_each = 1 # Number of genomes of each specie in the database
+    num_genomes_each = 100 # Number of genomes of each specie in the database
     flag_db_created = False
 
     if not flag_db_created:
@@ -192,11 +192,10 @@ if __name__ == "__main__":
                                mag = False)
         # species to download
         names = {"Ecoli" : "Escherichia coli", 
-                "Klebsiella" : "Klebsiella pneumoniae"}
-        """,
-                "Pseudomonas" : "Pseudomonas aeruginosa",
-                "Acinetobacter" : "Acinetobacter baumannii",
-                "Enterobacter" : "Enterobacter"}"""
+                 "Klebsiella" : "Klebsiella pneumoniae",
+                 "Pseudomonas" : "Pseudomonas aeruginosa",
+                 "Acinetobacter" : "Acinetobacter baumannii",
+                 "Enterobacter" : "Enterobacter"}
 
         ## For downloading normal genomes --> download_genomes() directly
         
