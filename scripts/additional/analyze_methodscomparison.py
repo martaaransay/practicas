@@ -19,7 +19,7 @@ from pipeline.analyze_Pc import extract_integron_info_gbk
 
 # To get folder names:
 
-n = 250 # Number of genomes per species -> to specify the folder names
+n = 500 # Number of genomes per species -> to specify the folder names
 # min_length = ""
 # min_length = "/700min_length"
 min_length = "/1000min_length"
