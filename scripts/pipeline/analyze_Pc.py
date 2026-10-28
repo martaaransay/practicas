@@ -224,7 +224,9 @@ def info_to_csv(dict_info, path_out_file):
     dict_info (dict): A dictionary containing the data to be stored. 
     path_out_file (str): The file path where the CSV file will be saved.
     """
+    os.makedirs(os.path.dirname(path_out_file), exist_ok=True) # to avoid errors
     # Open the file in appending mode
+    
     with open(path_out_file, "a", newline="") as out_csv:
         csvwriter = csv.writer(out_csv) # Writer
         # If the file is new, writes as header the keys of the dictionary
