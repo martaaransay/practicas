@@ -257,6 +257,7 @@ def plot_hits_overlap(sets_dict,
 #------------------------ Function to plot the distribution of Pc variants by species
 def plot_pc_by_species(csv_path,
                        title = "Distribution of Pc variants by Species",
+                       replace_names = None,
                        outdir = None, filename = "pc_variants_by_species.png"):
     """
     Plots a stacked bar chart with the number of hits of each Pc variant,
@@ -266,6 +267,8 @@ def plot_pc_by_species(csv_path,
     ------
     csv_path (str): The path to the final.csv file (needs the columns Pc_variant and species).
     title (str): Title of the plot.
+    replace_names (dict, optional): Dictionary with the species' names to fill the legend.
+                                   Default to None (ESKAPEE species).
     outdir (str, optional): Directory where the plot is saved. 
                             Default to None (the plot is shown instead of saved).
     filename (str): Name of the output file. 
@@ -278,14 +281,32 @@ def plot_pc_by_species(csv_path,
     
     df = pd.read_csv(csv_path)
     df.columns = df.columns.str.strip() # Removes spaces from the column names
+    
+    # Dictionary to replace short names with full organism names
+    if replace_names is None:
+        # By default, ESKAPEE species
+        replace_names = {"Ecoli": "Escherichia coli",
+                         "Klebsiella": "Klebsiella pneumoniae",
+                         "Pseudomonas": "Pseudomonas aeruginosa",
+                         "Acinetobacter": "Acinetobacter baumannii",
+                         "Enterobacter": "Enterobacter"}
+
+    if "organism_name" in df.columns:
+        legend_col = ("organism_name")
+    else:
+        legend_col = ("species")
+
+    # Replace names for the legend 
+    df[legend_col] = df[legend_col].replace(replace_names)
 
     # Cross table: number of occurrences of each Pc variant in each species
     count_table = pd.crosstab(df["Pc_variant"], df["species"])
 
     fig, ax = plt.subplots(figsize = (12, 7))
     # Colors to plot
-    colors = ["#984FB3", "#AAAA00", "#FF5733", "#FF8D1A", 
-              "#FFE400", "#FF96E8", "#96FFE5", "#4F80B3"]
+    colors = ["#926FA0", "#89B68D", "#C27D6E", "#4F80B3",  
+              "#DFCE6E", "#55A131", "#C47EB5",  "#8F551B"]
+    
     # Stacked bars (one color per species)
     count_table.plot(kind = "bar", stacked = True, ax = ax,
                      color = colors[:len(count_table.columns)], 
