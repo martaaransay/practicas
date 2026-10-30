@@ -38,3 +38,29 @@ print(f"Number of intI1 hits:                   {len(df_final_csv)}")
 print(f"    - Non-identified Pc variant:        {len(df_NA_Pc)}")
 print(f"    - Identified Pc variant:            {len(df_no_NA_Pc)}\n")
 print(f"Number of genomes with at least 1 hit:  {df_final_csv['genome'].nunique()}")
+
+print(f"\nNumber of hits:")
+df_PcS = df_no_NA_Pc[df_no_NA_Pc["Pc_variant"] == "PcS"]
+print(f"    - PcS:                      {len(df_PcS)}")
+df_PcW = df_no_NA_Pc[df_no_NA_Pc["Pc_variant"] == "PcW"]
+print(f"    - PcW:                      {len(df_PcW)}")
+df_PcWTGN_10 = df_no_NA_Pc[df_no_NA_Pc["Pc_variant"] == "PcWTGN-10"]
+print(f"    - PcWTGN-10:                {len(df_PcWTGN_10)}")
+df_PcH1 = df_no_NA_Pc[df_no_NA_Pc["Pc_variant"] == "PcH1"]
+print(f"    - PcH1:                     {len(df_PcH1)}")
+df_PcH1TGN_10 = df_no_NA_Pc[df_no_NA_Pc["Pc_variant"] == "PcH1TGN-10"]
+print(f"    - PcH1TGN-10:               {len(df_PcH1TGN_10)}")
+df_PcH2 = df_no_NA_Pc[df_no_NA_Pc["Pc_variant"] == "PcH2"]
+print(f"    - PcH2:                     {len(df_PcH2)}")
+df_PcH2TGN_10 = df_no_NA_Pc[df_no_NA_Pc["Pc_variant"] == "PcH2TGN-10"]
+print(f"    - PcH2TGN-10:               {len(df_PcH2TGN_10)}")
+df_seq = df_no_NA_Pc[df_no_NA_Pc["Pc_variant"] == "TGGGCA-N14-TGn-TAAGCT"]
+print(f"    - TGGGCA-N14-TGn-TAAGCT:    {len(df_seq)}")
+df_PcSS = df_no_NA_Pc[df_no_NA_Pc["Pc_variant"] == "PcSS"]
+print(f"    - PcSS:                     {len(df_PcSS)}")
+df_Pcln42= df_no_NA_Pc[df_no_NA_Pc["Pc_variant"] == "Pcln42"]
+print(f"    - Pcln42:                   {len(df_Pcln42)}")
+df_Pcln116= df_no_NA_Pc[df_no_NA_Pc["Pc_variant"] == "Pcln116"]
+print(f"    - Pcln116:                  {len(df_Pcln116)}")
+df_PcPUO= df_no_NA_Pc[df_no_NA_Pc["Pc_variant"] == "PcPUO"]
+print(f"    - PcPUO::                   {len(df_PcPUO)}")
