@@ -34,6 +34,7 @@ df_NA_Pc = df_final_csv[df_final_csv["Pc_variant"].isna()] # Number of NAs
 df_no_NA_Pc = df_final_csv[~df_final_csv["Pc_variant"].isna()]
 
 print("\n=========== Pc variants summary ===========")
-print(f"Number of intI1 hits:              {len(df_final_csv)}")
-print(f"    - Non-identified Pc variant:   {len(df_NA_Pc)}")
-print(f"    - Identified Pc variant:       {len(df_no_NA_Pc)}")
+print(f"Number of intI1 hits:                   {len(df_final_csv)}")
+print(f"    - Non-identified Pc variant:        {len(df_NA_Pc)}")
+print(f"    - Identified Pc variant:            {len(df_no_NA_Pc)}\n")
+print(f"Number of genomes with at least 1 hit:  {df_final_csv['genome'].nunique()}")
