@@ -133,11 +133,11 @@ summary_rows = []
 folders = {}
 
 ## Blast results
-
+print("\n=========== BLAST summary ===========")
 for min_len in min_lengths:
     blast_hits_col = f"BLAST_min{min_len}_hits"
 
-    print(f"\n################ min_length = {min_len} ################")
+    print(f"\n--- min_length = {min_len} ---")
 
     disc_mask = df[blast_hits_col] != df["IF2_hits"] # mask for discordant genomes
     disc = df.loc[disc_mask].copy() 
@@ -176,7 +176,6 @@ for min_len in min_lengths:
     n_blast = len(blast_df)
     n_genomes_blast = int((df[blast_hits_col] > 0).sum()) # diff to 0
 
-    print("\n--- BLAST hits ---")
     print(f"BLAST hits (total):            {n_blast}")
     print(f"Genomes with BLAST hits:       {n_genomes_blast}")
 
@@ -229,8 +228,6 @@ combined_df_summary_rows = pd.concat(df_summary_rows, ignore_index = True)
 combined_df_summary_rows.to_csv(os.path.join(out_dir, 
                                              "summary_hits.csv"), index=False)
 
-print(f"\nAll results saved in: {out_dir}")
-
 #### Length stats
 print("\n=========== Discordant genomes summary ===========")
 discordantIF2_df["length"] = (discordantIF2_df["end"] - discordantIF2_df["start"]).abs()
@@ -244,21 +241,27 @@ for each_len in min_lengths:
     in0 = curr_discordant_IF2[curr_discordant_IF2["integron_type"] == "In0"]
     comp = curr_discordant_IF2[curr_discordant_IF2["integron_type"] == "complete"]
 
-    print(f"\n===== {each_len} pb =====")
+    print(f"\n--- min_length = {each_len} ---")
+    
+    print("\nNumber of disordant hits from each method:")
+    print(f"  - BLAST discordant hits:    {len(curr_discordant_blast)}")
+    print(f"  - IF2 discordant hits:      {len(curr_discordant_IF2)}"
+          f" (median length: {curr_discordant_IF2['length'].median():.0f} pb)")
+    print(f"        - In0:                   {len(in0)} "
+          f"({100*len(in0)/len(curr_discordant_IF2):.0f}%"
+          f" - median length: {in0['length'].median():.0f} pb)")
+    print(f"        - complete:              {len(comp)} "
+          f"({100*len(comp)/len(curr_discordant_IF2):.0f}%"
+          f" - median length: {comp['length'].median():.0f} pb)")
+
+
     print(f"Discordant genomes:              {len(curr_discordant)}")
     print(f"  - BLAST > IF2:                 {(blast > if2).sum()}")
     print(f"  - IF2 > BLAST:                 {(if2 > blast).sum()}")
     print(f"  - IF2 > BLAST with BLAST = 0:  {((if2 > blast) & (blast == 0)).sum()}")
-    print("\nNumber of disordant genomes from each method:")
-    print(f"  - BLAST discordant genomes:    {len(curr_discordant_blast)}")
-    print(f"  - IF2 discordant genomes:      {len(curr_discordant_IF2)}")
-    print(f"        - In0:                   {len(in0)} "
-          f"({100*len(in0)/len(curr_discordant_IF2):.0f}%)")
-    print(f"        - complete:              {len(comp)} "
-          f"({100*len(comp)/len(curr_discordant_IF2):.0f}%)")
-
+    
     if each_len > 0:
-        print(f"\nIF2 elements with < {each_len} pb:     "
+        print(f"\nIF2 hits with < {each_len} pb:     "
               f"{(curr_discordant_IF2['length'] < each_len).sum()} "
               f"({100*(curr_discordant_IF2['length'] < each_len).mean():.0f}%)")
               

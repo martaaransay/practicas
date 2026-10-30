@@ -289,7 +289,7 @@ def plot_pc_by_species(csv_path,
                          "Klebsiella": "Klebsiella pneumoniae",
                          "Pseudomonas": "Pseudomonas aeruginosa",
                          "Acinetobacter": "Acinetobacter baumannii",
-                         "Enterobacter": "Enterobacter"}
+                         "Enterobacter": "Enterobacter spp."}
 
     if "organism_name" in df.columns:
         legend_col = ("organism_name")
@@ -298,14 +298,18 @@ def plot_pc_by_species(csv_path,
 
     # Replace names for the legend 
     df[legend_col] = df[legend_col].replace(replace_names)
+        # Group every Enterobacter (any species) into "Enterobacter spp."
+    df[legend_col] = df[legend_col].astype(str).str.replace(
+        r"^Enterobacter\b.*", "Enterobacter spp.", regex = True
+    )
 
     # Cross table: number of occurrences of each Pc variant in each species
-    count_table = pd.crosstab(df["Pc_variant"], df["species"])
+    count_table = pd.crosstab(df["Pc_variant"], df[legend_col])
 
     fig, ax = plt.subplots(figsize = (12, 7))
     # Colors to plot
-    colors = ["#926FA0", "#89B68D", "#C27D6E", "#4F80B3",  
-              "#DFCE6E", "#55A131", "#C47EB5",  "#8F551B"]
+    colors = ["#9969AA", "#C2C25A", "#FF5733", "#E6A15C", 
+               "#4F80B3", "#FFE600", "#C57AB5", "#96FFE5"]
     
     # Stacked bars (one color per species)
     count_table.plot(kind = "bar", stacked = True, ax = ax,
@@ -318,7 +322,9 @@ def plot_pc_by_species(csv_path,
 
     plt.setp(ax.get_xticklabels(), rotation = 45, ha = "right")
     # Legend outside the plot to not cover the bars
-    ax.legend(title = "Species", bbox_to_anchor = (1.05, 1), loc = "upper left")
+    ax.legend(title = "Species", bbox_to_anchor = (1.05, 1), loc = "upper left", 
+              prop = {"style": "italic"}) # for species
+    
     fig.tight_layout()
 
     if outdir: # Saves the plot
@@ -329,3 +335,4 @@ def plot_pc_by_species(csv_path,
         plt.show()
 
     return count_table
+
