@@ -1,3 +1,4 @@
+import pandas as pd
 # Import functions from the pipeline module
 from plot.plotting import plot_pc_by_species
 
@@ -27,3 +28,12 @@ count_table = plot_pc_by_species(csv_path = path,
 # Saves results to csv
 count_table.to_csv(f"{outdir}/count_table.csv")
 
+### Stats summary
+df_final_csv = pd.read_csv(path)
+df_NA_Pc = df_final_csv[df_final_csv["Pc_variant"].isna()] # Number of NAs
+df_no_NA_Pc = df_final_csv[~df_final_csv["Pc_variant"].isna()]
+
+print("\n=========== Pc variants summary ===========")
+print(f"Number of intI1 hits:              {len(df_final_csv)}")
+print(f"    - Non-identified Pc variant:   {len(df_NA_Pc)}")
+print(f"    - Identified Pc variant:       {len(df_no_NA_Pc)}")
