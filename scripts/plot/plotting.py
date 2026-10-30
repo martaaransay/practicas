@@ -309,7 +309,7 @@ def plot_pc_by_species(csv_path,
     fig, ax = plt.subplots(figsize = (12, 7))
     # Colors to plot
     colors = ["#9969AA", "#C2C25A", "#FF5733", "#E6A15C", 
-               "#4F80B3", "#FFE600", "#C57AB5", "#96FFE5"]
+              "#4F80B3", "#FFE600", "#C57AB5", "#96FFE5"]
     
     # Stacked bars (one color per species)
     count_table.plot(kind = "bar", stacked = True, ax = ax,
