@@ -54,7 +54,7 @@ def download_species_genomes(species, outdir, flags, target_num = None):
     return dirs
 
 #------------------------ Function to generate a multifasta file
-def generate_multifasta(path_to_genomes, outfile, flag_deduplicate = True):
+def generate_multifasta(path_to_genomes, outfile, flag_unique = True):
     """
     Generates a multifasta file with the concatenation of the fasta files of a specific path.
 
@@ -62,14 +62,14 @@ def generate_multifasta(path_to_genomes, outfile, flag_deduplicate = True):
     ------
     path_to_genomes (str): The path to the genomes to be concatenated.
     outfile (str): The output file where the multifasta will be saved.
-    flag_deduplicate (bool): If True, keeps only one file per assembly.
-                             Defaults to True.
+    flag_unique (bool): If True, keeps the GCF version of the assembly.
+                        Defaults to True.
     """
     # Process the path to genomes to evaluate the wildcard correctly
     print("Generating multifasta")
     files_to_db = sorted(glob.glob(path_to_genomes))
 
-    if flag_deduplicate:
+    if flag_unique:
         dict_unique_files = unique_genome_files(files_to_db)
         files_to_db = list(dict_unique_files.values())
     

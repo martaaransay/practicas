@@ -88,14 +88,15 @@ def genome_key(name):
         accession = str(name)
     return accession
 
-#------------------------ Function to deduplicate files (based on genome accessions)
+#------------------------ Function to unique files (based on genome accessions)
 def unique_genome_files(files):
     """
     Keeps one file per assembly (GCF and GCA versions of a genome are the same).
-    
+    If both exist, the GCF (RefSeq) version is kept.
+
     Args
     ------
-    files (list): List of files to deduplicate.
+    files (list): List of files to unique.
 
     Return
     ------
@@ -106,7 +107,9 @@ def unique_genome_files(files):
     unique = {}
     for file in sorted(files):
         accession = genome_key(file) # Extracts the genome accession
-        # returns the value if the key exists, else inserts key with default
-        unique.setdefault(accession, file) # Keeps the first 
+        
+        # Keep the first file seen, but replace it if a GCF version shows up
+        if accession not in unique or os.path.basename(file).startswith("GCF_"):
+            unique[accession] = file
         
     return unique 
