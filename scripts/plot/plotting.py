@@ -310,7 +310,11 @@ def plot_pc_by_species(csv_path,
     # Colors to plot
     colors = ["#9969AA", "#C2C25A", "#FF5733", "#E6A15C", 
               "#4F80B3", "#FFE600", "#C57AB5", "#96FFE5"]
-    
+
+        # Order the Pc by total abundance
+    order = count_table.sum().sort_values(ascending=False).index
+    count_table = count_table.loc[:, order]
+
     # Stacked bars (one color per species)
     count_table.plot(kind = "bar", stacked = True, ax = ax,
                      color = colors[:len(count_table.columns)], 
