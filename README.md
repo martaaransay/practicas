@@ -175,10 +175,3 @@ A `.csv` file (`final.csv`) is also produced with detailed information on each h
 ## 3. Integrall database analysis
 
 The data from the [Integrall database](https://bio.tools/integrall) are also analysed with [this script](./scripts/T1_Integrall_Pc_abudance.py), producing [results](./results/Integrall_analysis) on the relative abundance of the ESKAPEE pathogens in this database.
-
-
-PENDIENTE PRÁCTICAS:
-
-- MEMORIA
-- cambiar los diagramas de funciones para que sean más monos
-- el diagrama de contig2genome hay q cambairlo a contig_to_genome (el nombre de la funcion)
