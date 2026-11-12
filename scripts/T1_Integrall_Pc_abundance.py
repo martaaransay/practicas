@@ -99,10 +99,10 @@ def write_count_table_xlsx(count_table,
 def count_table_plots(count_table,
                       eskapee_count_table,
                       eskapee = ["Escherichia coli", "Klebsiella pneumoniae", 
-                                              "Pseudomonas aeruginosa", "Acinetobacter baumannii",
-                                              "Enterobacter spp."],
-                      title = ["Pc distribution in ESKAPEE species", 
-                               "Relative abundance of promoters"],
+                                 "Pseudomonas aeruginosa", "Acinetobacter baumannii",
+                                 "Enterobacter spp."],
+                      title = ["A) Distribución de Pc en especies ESKAPEE", 
+                               "                   B) Abundancia relativa de Pc en especies ESKAPEE"],
                       outdir = "./results/Integrall_analysis",
                       filename = "relative_abundance.png"
                       ):
@@ -153,9 +153,9 @@ def count_table_plots(count_table,
                   edgecolor = "black")
 
     # Labels
-    plt.title(title[0], fontweight = "bold")
+    plt.title(title[0], fontweight = "bold", fontsize = 10)
     plt.xlabel("Pc", fontweight = "bold")
-    plt.ylabel("Count", fontweight = "bold")
+    plt.ylabel("Cantidad", fontweight = "bold")
     plt.xticks(rotation = 45, ha = "right")
 
     # Plot 2: ESKAPEE Species
@@ -174,17 +174,17 @@ def count_table_plots(count_table,
                          color = colors_total, 
                          edgecolor = "black")
 
-    plt.title(title[1], fontweight = "bold")
-    plt.xlabel("ESKAPEE Species", fontweight = "bold")
-    plt.ylabel("Count", fontweight = "bold")
-    plt.xticks(rotation = 45, ha = "right")
+    plt.title(title[1], fontweight = "bold", fontsize = 10)
+    plt.xlabel("Especies ESKAPEE", fontweight = "bold")
+    plt.ylabel("Cantidad", fontweight = "bold")
+    plt.xticks(rotation = 45, ha = "right", fontstyle = "italic")
 
     # Legend in the same order as the stack (most abundant at the bottom)
     handles, labels = plt.gca().get_legend_handles_labels()
     
     # Plot legend (Pc colors)
     plt.legend(handles[::-1], labels[::-1], 
-               title = "Promoter (Pc)", bbox_to_anchor = (1.05, 1), loc = "upper left")
+               title = "Promotor (Pc)", bbox_to_anchor = (1.05, 1), loc = "upper left")
     plt.tight_layout() # Size adjustment
     # Saves the plot
     plt.savefig(os.path.join(outdir, filename))

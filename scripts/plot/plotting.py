@@ -10,8 +10,9 @@ from matplotlib.patches import Patch
 # Plotting
 
 #------------------------ Function to plot e-values distribution
-def plot_evalue(logdata, labels, 
-                title = "E-value Distribution", outdir = "results/plots", 
+def plot_evalue(logdata, labels, min_lengts,
+                colors = ["#963FB0", "#41B883", "#1A6D70"],
+                title = "Distribución e-value", outdir = "results/plots", 
                 filename = "evalue_distribution.png"):
     """
     Saves a boxplot of the -log10 of e-values for each query.
@@ -20,54 +21,115 @@ def plot_evalue(logdata, labels,
     ------
     logata (list): A list of lists containing the -log10 of e-values for each query.
     labels (list): A list of the names of the queries.
+    min_lengts (list): A list of the minimum lengths for each query.
+    colors (list, optional): A list of colors for the boxplots.
     title (str, optional): The title of the plot.
     outdir (str, optional): The directory where the plot will be saved.
     filename (str, optional): The name of the file where the plot will be saved.
     """
     # Creates the output directory to avoid errors
     os.makedirs(outdir, exist_ok=True)
+
+    n_queries = len(labels) # Number of queries
+    width = 0.25 # Width of each box
     
-    fig, ax = plt.subplots(figsize=(7, 5)) # Creates axes for the plot
-    # Creates the boxplot with the data and labels defined
-    ax.boxplot(logdata, tick_labels=labels) 
-    # Adjusting labels / title:
-    ax.set_ylabel("-log10(E-value)") # Y label
-    ax.set_title(title) # Title of the plot
-    plt.xticks(rotation=20) # Rotates the x-axis labels
-    plt.tight_layout() # Adjusts the layout to avoid overlapping
-    # Saves the plot
-    plt.savefig(os.path.join(outdir, filename)) 
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    for idx_g, group in enumerate(logdata): # Iterates over each query
+        for idx_v, values in enumerate(group): # Iterates over each value in the query
+            # To adjust the position of each boxplot
+            pos = idx_g + (idx_v - (n_queries - 1) / 2) * width 
+
+            # Creates a boxplot for each value with a specific color and position
+            boxplots = plt.boxplot(values, positions = [pos], 
+                                    widths = width*0.9, patch_artist = True,
+                                    flierprops=dict(markerfacecolor=colors[idx_v],
+                                            ))
+            # To apply colors to the boxes
+            boxplots["boxes"][0].set(facecolor = colors[idx_v])
+            
+            for median in boxplots["medians"]: # To convert the median line to black
+                median.set(color = "black")
+    
+    ax.set_xticks(range(len(min_lengts))) # Ticks of the x-axis
+    ax.tick_params(axis = "y", labelsize = 10) # Ticks of the y-axis
+    
+    ax.set_xticklabels(min_lengts, fontsize = 10) # Labels for the x-axis
+    ax.set_xlabel("Longitud mínima del alineamiento", fontsize = 10) # Title of the x-axis
+        
+    ax.set_ylabel("-log10(e-value)", fontsize = 10) # Label of the x-axis
+    
+    ax.set_title(title, fontsize=12, fontweight="bold") # Title
+    legend = []
+    for c, l in zip(colors, labels): # To create the legend
+        legend.append(Patch(facecolor=c, label=l))
+    # Creates the legend with the labels and colors defined
+    ax.legend(handles = legend,
+                fontsize = 10, loc = "lower right", 
+                title = "Consultas", title_fontsize = 10)
+    
+    plt.tight_layout()
+    plt.savefig(os.path.join(outdir, filename))
     plt.close(fig)
-    return
+    return    
+
 
 #------------------------ Function to plot bitscore distribution
-def plot_bitscore(bitscore_data, labels, 
-                  title = "BitScore Distribution", outdir = "results/plots", 
+def plot_bitscore(bitscore_data, labels, min_lengts,
+                  colors = ["#963FB0", "#41B883", "#1A6D70"],
+                  title = "Distribución BitScore", outdir = "results/plots", 
                   filename = "bitscore_distribution.png"):
     """
-    Saves a boxplot of the bitscores for each query.
+    Saves a combined boxplot of the bitscores for each query.
         
     Args
     ------
     bitscore_data (list): A list of lists containing the bitscores for each query.
     labels (list): A list of the names of the queries.
+    min_lengts (list): A list of the minimum lengths for each query.
+    colors (list, optional): A list of colors for the boxplots.
     title (str, optional): The title of the plot.
     outdir (str, optional): The directory where the plot will be saved.
     filename (str, optional): The name of the file where the plot will be saved.
-    
     """
     # Creates the output directory to avoid errors
     os.makedirs(outdir, exist_ok=True)
 
-    fig, ax = plt.subplots(figsize=(7, 5)) # Creates axes for the plot
-    # Creates the boxplot with the data and labels defined
-    ax.boxplot(bitscore_data, tick_labels=labels)
-    # Adjusting labels / title:
-    ax.set_ylabel("BitScore") # Y label
-    ax.set_title(title) # Title of the plot
-    plt.xticks(rotation=20) # Rotates the x-axis labels
-    plt.tight_layout() # Adjusts the layout to avoid overlapping
-    # Saves the plot
+    n_queries = len(labels) # Number of queries
+    width = 0.25 # Width of each box
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    for idx_g, group in enumerate(bitscore_data): # Iterates over each query
+        for idx_v, values in enumerate(group): # Iterates over each value in the query
+            # To adjust the position of each boxplot
+            pos = idx_g + (idx_v - (n_queries - 1) / 2) * width 
+
+            # Creates a boxplot for each value with a specific color and position
+            boxplots = plt.boxplot(values, positions = [pos], 
+                                   widths = width*0.9, patch_artist = True)
+            # To apply colors to the boxes
+            boxplots["boxes"][0].set(facecolor = colors[idx_v])
+            
+            for median in boxplots["medians"]: # To convert the median line to black
+                median.set(color = "black")
+    
+    ax.set_xticks(range(len(min_lengts))) # Ticks of the x-axis
+    ax.tick_params(axis = "y", labelsize = 10) # Ticks of the y-axis
+    
+    ax.set_xticklabels(min_lengts, fontsize = 10) # Labels for the x-axis
+    ax.set_xlabel("Longitud mínima del alineamiento", fontsize = 10) # Title of the x-axis
+    
+    ax.set_title(title, fontsize=12, fontweight="bold") # Title
+    legend = []
+    for c, l in zip(colors, labels): # To create the legend
+        legend.append(Patch(facecolor=c, label=l))
+    # Creates the legend with the labels and colors defined
+    ax.legend(handles = legend,
+              fontsize = 10, loc = "lower right", 
+              title = "Consultas", title_fontsize = 10)
+    
+    plt.tight_layout()
     plt.savefig(os.path.join(outdir, filename))
     plt.close(fig)
     return
@@ -96,7 +158,12 @@ def plot_evalue_thresholds(dfs, times,
     os.makedirs(outdir, exist_ok=True)
     fig, axes = plt.subplots(1, 2, figsize=(13, 5))
     # Iterate over each query and its corresponding dataframe and color
-    for (query, df), color in zip(dfs.items(), colors): 
+    for (query, df), color in zip(dfs.items(), colors):
+
+        changing_query_labels = {"data/Int1/Int1.fa" : "Int1",
+                                 "data/Int1/Int1_Pc_pattern.fa" : "Int1 con patrón en Pc",
+                                 "data/Int1/Int1_no_Pc.fa" : "Int1 sin región Pc"}
+       
         # Lists to store the number of hits and unique genomes for each e-value threshold
         n_hits = []
         n_unique = []
@@ -106,18 +173,18 @@ def plot_evalue_thresholds(dfs, times,
             n_hits.append(evalue_mask.sum()) # Counts the number of hits 
             n_unique.append(df.loc[evalue_mask, "seq_id"].nunique()) # Counts the number of seq_id 
 
-        label = f"{query} - {times[query]:.2f} secs"
+        label = f"{changing_query_labels[query]} - {times[query]:.2f} secs"
         axes[0].plot(evalues, n_hits, label = label, color = color)
         axes[1].plot(evalues, n_unique, label = label, color = color)
 
     for ax in axes:
         ax.set_xscale("log")
-        ax.set_xlabel("E-value threshold")
+        ax.set_xlabel("Umbrales de e-value", fontsize=10)
         ax.legend()
-    axes[0].set_ylabel("Total hits")
-    axes[1].set_ylabel("Unique hits (seq_id)")
+    axes[0].set_ylabel("Hits totales", fontsize=10)
+    axes[1].set_ylabel("Hits únicos (genomas únicos)", fontsize=10)
 
-    fig.suptitle(title)
+    fig.suptitle(title, fontsize=14, fontweight="bold")
     fig.tight_layout()
     fig.savefig(os.path.join(outdir, filename))
     plt.close(fig)
