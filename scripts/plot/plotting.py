@@ -173,7 +173,7 @@ def plot_evalue_thresholds(dfs, times,
             n_hits.append(evalue_mask.sum()) # Counts the number of hits 
             n_unique.append(df.loc[evalue_mask, "seq_id"].nunique()) # Counts the number of seq_id 
 
-        label = f"{changing_query_labels[query]} - {times[query]:.2f} secs"
+        label = f"{changing_query_labels[query]} - {times[query]:.2f} s"
         axes[0].plot(evalues, n_hits, label = label, color = color)
         axes[1].plot(evalues, n_unique, label = label, color = color)
 
@@ -191,8 +191,10 @@ def plot_evalue_thresholds(dfs, times,
 
 #------------------------ Function to plot the comparison between methods
 def plot_hits_comparison(summary, total_times,
-                         colors = ["#35C40E", "#F791F4", "#F1BE3B"],
-                         title = "Method comparison", outdir = "results/plots",
+                         colors = ["#60A34D", "#F791F4", "#F1BE3B"],
+                         title = ["Comparativa de métodos",
+                                  "Tiempo de ejecución"], 
+                         outdir = "results/plots",
                          filename = "method_comparison.png"):
     """
     Saves a plot comparing the total hits, unique hits, and execution times across three methods.
@@ -204,7 +206,7 @@ def plot_hits_comparison(summary, total_times,
     total_times (dict): A dictionary where keys are the names of the methods and
                         values are the execution times.
     colors (list, optional): List of colors for each method.
-    title (str, optional): The title of the plot.
+    title (list, optional): List of titles of the plot.
     outdir (str, optional): The directory where the plot will be saved.
     filename (str, optional): The name of the file where the plot will be saved.
     """
@@ -241,10 +243,11 @@ def plot_hits_comparison(summary, total_times,
                     label = m, color = dict_colors[m])
     # Labels, titles and axes
     axes[0].set_xticks(x)
-    axes[0].set_xticklabels(["Total hits", "Unique hits"])
-    axes[0].set_ylabel("Number of hits")
-    axes[0].set_title("Total hits vs. Unique hits")
-    axes[0].legend(title = "Method")
+    axes[0].set_xticklabels(["Hits totales", "Hits únicos\n(genomas únicos)"], fontsize = 10)
+    axes[0].set_ylabel("Número de hits", fontsize = 10)
+    axes[0].set_title(f"{title[0]}", fontweight = "bold",
+                      fontsize = 12)
+
 
     # Subplot 2: "Time of execution"
     # Background plot to plot times
@@ -252,19 +255,33 @@ def plot_hits_comparison(summary, total_times,
     for i, m in enumerate(methods):
         # Plot time of each method
         axes[1].plot(i, times[i], "o", color = dict_colors[m])
+        unit = "s"
+        value = times[i]
         # Annotate the time of each method
-        axes[1].annotate(f"{times[i]:.2f}s", (i, times[i]), 
+        if value >= 60:
+            value = value / 60
+            unit = "min"
+        if unit == "min" and value >= 60:
+            value = value / 60
+            unit = "h"
+
+        axes[1].annotate(f"{value:.2f}{unit}", (i, times[i]), 
                          textcoords = "offset points", xytext = (0, 10),
                           ha="center")
     
     # Labels, titles and axes
+    axes[1].set_yscale("log") # Logarithmic Y axis
     axes[1].set_xticks(range(n))
     axes[1].set_xticklabels(methods)
-    axes[1].set_ylabel("Time (secs)")
-    axes[1].set_title("Time of execution")
-    axes[1].margins(y=0.15)  # deja hueco arriba para las anotaciones
-
-    plt.suptitle(title) # Set the principal title
+    axes[1].set_ylabel("Tiempo (s, log10)")
+    axes[1].set_title(f"C) Tiempo de ejecución {title[1]}", fontweight = "bold",
+                      fontsize = 12)
+    axes[1].margins(y=0.3)  # Room above for the annotations
+    legend = [] # Legend
+    for m in methods:
+        legend.append(Patch(facecolor = dict_colors[m], label = m))
+    axes[1].legend(handles = legend,
+                   title = "Método utilizado")
 
     plt.tight_layout()# Adjusts the layout to avoid overlapping
     # Saves the plot
@@ -276,8 +293,8 @@ def plot_hits_comparison(summary, total_times,
 
 #------------------------ Function to analyze the overlapping
 def plot_hits_overlap(sets_dict, 
-                      colors = ["#35C40E", "#F791F4", "#F1BE3B"], 
-                      title = "Hits overlapping", outdir = "results/plots",
+                      colors = ["#60A34D", "#F791F4", "#F1BE3B"],
+                      title = "Solapamiento de hits únicos entre métodos", outdir = "results/plots",
                       filename = "hits_overlap.png"):
     """
     Saves a plot showing the overlapping of hits across three methods using a Venn diagram.
@@ -305,17 +322,16 @@ def plot_hits_overlap(sets_dict,
           # Plot with the regions with the same size
           layout_algorithm = DefaultLayoutAlgorithm(fixed_subset_sizes = (1,) *7)) # 7 regions
     
-    handles = [] # List to store the legend handles
+    legend = [] # List to store the legend handles
     for color, meth, set in zip(colors, names, sets): # Iterate over each method and its corresponding color
         # Create a patch for the legend with the corresponding color and label
-        handle = Patch(facecolor = color, alpha = 0.5, 
-                       label = f"{meth} (n={len(set)})")
-        handles.append(handle)
+        legend.append(Patch(facecolor = color, alpha = 0.5, 
+                       label = f"{meth} (n={len(set)})"))
 
     # Add the legend to the plot with the created handles
-    ax.legend(handles = handles, loc = "upper right")
+    ax.legend(handles = legend, loc = "upper right", title = "Método utilizado")
 
-    ax.set_title(title) # Set the title of the plot
+    ax.set_title(title, fontweight = "bold", fontsize = 12) # Set the title of the plot
     plt.tight_layout() # Adjusts the layout to avoid overlapping
     plt.savefig(os.path.join(outdir, filename))
     plt.close(fig)
