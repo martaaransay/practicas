@@ -15,13 +15,14 @@ names = {"Ecoli" : "Escherichia coli",
          "Enterobacter" : "Enterobacter"}
 
 n_genomes = 1500 # Number of genomes per species
+general_title = f"{str(n_genomes)} genomas/taxón (total: {n_genomes*5} genomas)"
 # csv with info
 path = f"./results/final/{n_genomes}genomes/final.csv"
 
 outdir = f"./results/final/{n_genomes}genomes"
 # Plots the distribution of promoters among species and Pc variants
 count_table = plot_pc_by_species(csv_path = path,
-                                 title = f"Distribution of Pc variants by Species - db: {n_genomes*5} genomes ESKAPEE",
+                                 title = f"Distribución de variantes de Pc por especie \n{general_title}",
                                  replace_names = names,
                                  outdir = outdir)
 

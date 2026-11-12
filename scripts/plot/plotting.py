@@ -339,7 +339,7 @@ def plot_hits_overlap(sets_dict,
 
 #------------------------ Function to plot the distribution of Pc variants by species
 def plot_pc_by_species(csv_path,
-                       title = "Distribution of Pc variants by Species",
+                       title = "Distribución de variantes de Pc por especie",
                        replace_names = None,
                        outdir = None, filename = "pc_variants_by_species.png"):
     """
@@ -403,13 +403,13 @@ def plot_pc_by_species(csv_path,
                      color = colors[:len(count_table.columns)], 
                      edgecolor = "black")
 
-    ax.set_xlabel("Pc variant")
-    ax.set_ylabel("Count")
-    ax.set_title(title)
+    ax.set_xlabel("Variante de Pc", fontsize = 12)
+    ax.set_ylabel("Cantidad", fontsize = 12)
+    ax.set_title(title, fontsize = 14, fontweight = "bold")
 
     plt.setp(ax.get_xticklabels(), rotation = 45, ha = "right")
     # Legend outside the plot to not cover the bars
-    ax.legend(title = "Species", bbox_to_anchor = (1.05, 1), loc = "upper left", 
+    ax.legend(title = "Especies", loc = "upper right", 
               prop = {"style": "italic"}) # for species
     
     fig.tight_layout()
