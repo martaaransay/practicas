@@ -138,6 +138,7 @@ def plot_bitscore(bitscore_data, labels, min_lengts,
 def plot_evalue_thresholds(dfs, times,
                            evalues = np.logspace(1, -300, 200),
                            colors = ["#963FB0", "#41B883", "#1A6D70"],
+                           y_lim = 1600,
                            title = "E-Values thresholds", outdir = "results/plots",
                            filename = "evalue_thresholds.png"):
     """
@@ -151,6 +152,7 @@ def plot_evalue_thresholds(dfs, times,
     evalues (list, optional): List of e-value thresholds to consider.
                               Defaults to np.logspace(1, -300, 200).
     colors (list, optional): List of colors for each query.
+    y_lim (int, optional): Limit of y-axis.
     title (str, optional): The title of the plot.
     outdir (str, optional): The directory where the plot will be saved.
     filename (str, optional): The name of the file where the plot will be saved.
@@ -181,6 +183,7 @@ def plot_evalue_thresholds(dfs, times,
         ax.set_xscale("log")
         ax.set_xlabel("Umbrales de e-value", fontsize=10)
         ax.legend()
+        ax.set_ylim(0, y_lim)# Limit y-axis
     axes[0].set_ylabel("Hits totales", fontsize=10)
     axes[1].set_ylabel("Hits únicos (genomas únicos)", fontsize=10)
 
@@ -192,6 +195,7 @@ def plot_evalue_thresholds(dfs, times,
 #------------------------ Function to plot the comparison between methods
 def plot_hits_comparison(summary, total_times,
                          colors = ["#60A34D", "#F791F4", "#F1BE3B"],
+                         y_lim = 1600,
                          title = ["Comparativa de métodos",
                                   "Tiempo de ejecución"], 
                          outdir = "results/plots",
@@ -206,6 +210,7 @@ def plot_hits_comparison(summary, total_times,
     total_times (dict): A dictionary where keys are the names of the methods and
                         values are the execution times.
     colors (list, optional): List of colors for each method.
+    y_lim (int, optional): Limit of y-axis.
     title (list, optional): List of titles of the plot.
     outdir (str, optional): The directory where the plot will be saved.
     filename (str, optional): The name of the file where the plot will be saved.
@@ -233,6 +238,7 @@ def plot_hits_comparison(summary, total_times,
     x = np.arange(2) # Two comparisons: total and unique
     width = 0.8 / n # Width of each bar
 
+    # Subplot 1: "Total hits vs unique hits"
     for i, m in enumerate(methods):
         values = [totals[i], uniques[i]] # Pairs to plot for each method
         center = (n - 1) / 2 # Middle bar 
@@ -242,6 +248,7 @@ def plot_hits_comparison(summary, total_times,
                     values, width = width, 
                     label = m, color = dict_colors[m])
     # Labels, titles and axes
+    axes[0].set_ylim(0, y_lim) # Limit y axis
     axes[0].set_xticks(x)
     axes[0].set_xticklabels(["Hits totales", "Hits únicos\n(genomas únicos)"], fontsize = 10)
     axes[0].set_ylabel("Número de hits", fontsize = 10)
